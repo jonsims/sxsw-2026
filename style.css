@@ -1,0 +1,796 @@
+/* SXSW 2026 Trip Guide — style.css */
+
+/* ─── Variables ──────────────────────────────────────────────────────────── */
+
+:root {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #666;
+  --text-tertiary: #999;
+  --border: #e5e5e5;
+  --session: #2563EB;
+  --dining: #EA580C;
+  --comedy: #EA580C;
+  --run: #16A34A;
+  --free: #16A34A;
+  --logistics: #6B7280;
+  --accent: #2563EB;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --radius: 12px;
+}
+
+html.dark {
+  --bg: #1a1a2e;
+  --surface: #25253e;
+  --text: #e8e8f0;
+  --text-secondary: #a0a0b8;
+  --text-tertiary: #707088;
+  --border: #35355a;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ─── Reset & Base ───────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+#darkToggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: transform 0.1s ease;
+}
+
+#darkToggle:active {
+  background: var(--border);
+  transform: scale(0.92);
+}
+
+/* ─── Views ──────────────────────────────────────────────────────────────── */
+
+.view {
+  display: none;
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.view.active { display: block; }
+
+/* ─── Tab Bar ────────────────────────────────────────────────────────────── */
+
+#tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#tab-bar a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 0;
+  min-height: 50px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s ease;
+}
+
+#tab-bar a:active {
+  transform: scale(0.92);
+}
+
+#tab-bar a.active {
+  color: var(--accent);
+}
+
+#tab-bar a svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+html.dark #tab-bar a svg {
+  stroke-width: 2.2;
+}
+
+/* ─── Day Summary (Now View) ─────────────────────────────────────────────── */
+
+.day-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  background: var(--surface);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 6px solid var(--accent);
+}
+
+.summary-badge {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+
+.summary-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* ─── Now View ───────────────────────────────────────────────────────────── */
+
+.now-message {
+  text-align: center;
+  padding: 40px 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.now-countdown {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 20px 0 12px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  margin: 8px 0 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 1s linear;
+}
+
+.progress-fill.progress-urgent {
+  background: #d97706;
+}
+
+.progress-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* ─── Weather ────────────────────────────────────────────────────────────── */
+
+#weather-bar:empty { display: none; }
+
+.weather-now {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 0;
+  margin-bottom: 4px;
+}
+
+.weather-temp {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.weather-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.weather-loc {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-left: auto;
+}
+
+.weather-range {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Event Cards (Now View) ─────────────────────────────────────────────── */
+
+.event-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border-left: 6px solid var(--logistics);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.event-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.event-card.cat-session { border-left-color: var(--session); }
+.event-card.cat-dining { border-left-color: var(--dining); }
+.event-card.cat-comedy { border-left-color: var(--comedy); }
+.event-card.cat-run { border-left-color: var(--run); }
+.event-card.cat-free { border-left-color: var(--free); }
+.event-card.cat-logistics { border-left-color: var(--logistics); }
+
+.card-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.card-reserved {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #16A34A;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  background: rgba(22, 163, 74, 0.1);
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+html.dark .card-reserved {
+  background: rgba(22, 163, 74, 0.15);
+}
+
+.card-time {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.card-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 2px 0 6px;
+  line-height: 1.3;
+}
+
+.card-venue {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.card-walk {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  margin-bottom: 4px;
+}
+
+.card-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.card-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s ease;
+}
+
+.card-btn:active { transform: scale(0.95); }
+
+.card-btn-alt {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* ─── Schedule View ──────────────────────────────────────────────────────── */
+
+.day-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 8px 0;
+  background: var(--bg);
+}
+
+.day-tab {
+  flex: 1;
+  min-width: 56px;
+  padding: 10px 4px;
+  border: none;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s ease;
+  flex-shrink: 0;
+}
+
+.day-tab:active { transform: scale(0.95); }
+
+.day-tab.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.day-tab.today:not(.active) {
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+html.dark .day-tab.today:not(.active) {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.day-header {
+  margin-bottom: 16px;
+}
+
+.day-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.day-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.day-weather {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* Schedule cards (expandable) */
+
+.sched-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  border-left: 6px solid var(--logistics);
+  overflow: hidden;
+}
+
+.sched-card.cat-session { border-left-color: var(--session); }
+.sched-card.cat-dining { border-left-color: var(--dining); }
+.sched-card.cat-comedy { border-left-color: var(--comedy); }
+.sched-card.cat-run { border-left-color: var(--run); }
+.sched-card.cat-free { border-left-color: var(--free); }
+.sched-card.cat-logistics { border-left-color: var(--logistics); }
+
+/* Past events muted */
+.sched-card.past-event {
+  opacity: 0.45;
+}
+
+/* Current event highlighted */
+.sched-card.current-event {
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+}
+
+.sched-card summary {
+  padding: 12px 16px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+}
+
+.sched-card summary::-webkit-details-marker { display: none; }
+
+.sched-card[open] .sc-expand {
+  animation: expandIn 0.2s ease-out;
+}
+
+@keyframes expandIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sc-time {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.sc-reserved {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: #16A34A;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  background: rgba(22, 163, 74, 0.1);
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+html.dark .sc-reserved {
+  background: rgba(22, 163, 74, 0.15);
+}
+
+.sc-name {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 2px 0;
+  line-height: 1.3;
+}
+
+.sc-venue {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.sc-walk {
+  display: block;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.sc-expand {
+  padding: 0 16px 16px;
+}
+
+.sc-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.sc-alts {
+  margin-top: 12px;
+  padding: 10px;
+  background: var(--bg);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.sc-alts strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+}
+
+.sc-alts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sc-alts li {
+  padding: 6px 0;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.sc-alts li:last-child {
+  border-bottom: none;
+}
+
+.sc-alts li::before {
+  content: "- ";
+  color: var(--text-tertiary);
+}
+
+.sc-alts summary {
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+/* ─── Reference View ─────────────────────────────────────────────────────── */
+
+.ref-section {
+  background: var(--surface);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.ref-title {
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.ref-title::-webkit-details-marker { display: none; }
+
+.ref-title::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 300;
+}
+
+.ref-section[open] > .ref-title::after {
+  content: "-";
+}
+
+.ref-body {
+  padding: 0 16px 16px;
+}
+
+.ref-item {
+  font-size: 14px;
+  padding: 3px 0;
+  color: var(--text-secondary);
+}
+
+.ref-restaurant {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ref-restaurant:last-child { border-bottom: none; }
+
+.venue-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.venue-table th {
+  text-align: left;
+  padding: 8px 0;
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.venue-table td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.venue-table td:first-child {
+  padding-right: 12px;
+}
+
+.venue-table td:last-child {
+  text-align: right;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  padding-left: 12px;
+}
+
+.ref-body ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ref-body ul li {
+  padding: 4px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.ref-body ul li::before {
+  content: "- ";
+  color: var(--text-tertiary);
+}
+
+.ref-subhead {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-top: 18px;
+  margin-bottom: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.ref-subhead:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.ref-cuisine {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.ref-small {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ref-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 2px;
+  margin: -4px -2px;
+}
+
+.ref-link:active {
+  opacity: 0.7;
+}
+
+.ref-pick {
+  display: inline-block;
+  background: #16A34A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.ref-skip {
+  display: inline-block;
+  background: #6B7280;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+/* Group labels for Reference tab sections */
+.ref-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  padding: 20px 0 6px;
+}
+
+/* Nested details (e.g. San Jose full lineup) */
+.ref-nested {
+  margin-top: 8px;
+}
+
+.ref-nested-summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+/* Option items for explore/lunch events */
+.card-options {
+  margin-top: 8px;
+}
+
+.option-item {
+  padding: 6px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.option-item:last-child {
+  border-bottom: none;
+}
+
