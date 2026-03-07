@@ -584,7 +584,10 @@ function eventCard(ev, label) {
   // Buttons above detail for one-handed reachability
   const btns = [];
   if (mUrl) btns.push('<a href="' + mUrl + '" class="card-btn">Directions</a>');
-  if (ev.url) btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
+  if (ev.url) {
+    btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
+    btns.push('<a href="' + ev.url + '" target="_blank" rel="noreferrer" class="card-btn card-btn-alt">Web</a>');
+  }
   if (ev.phone) btns.push('<a href="tel:' + ev.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
   if (ev.website) btns.push('<a href="' + ev.website + '" target="_blank" class="card-btn card-btn-alt">Website</a>');
   if (btns.length) html += '<div class="card-btns">' + btns.join("") + '</div>';
@@ -738,7 +741,10 @@ function renderDay(idx) {
 
     const btns = [];
     if (mUrl) btns.push('<a href="' + mUrl + '" class="card-btn">Directions</a>');
-    if (ev.url) btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
+    if (ev.url) {
+    btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
+    btns.push('<a href="' + ev.url + '" target="_blank" rel="noreferrer" class="card-btn card-btn-alt">Web</a>');
+  }
     if (ev.phone) btns.push('<a href="tel:' + ev.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
     if (ev.website) btns.push('<a href="' + ev.website + '" target="_blank" class="card-btn card-btn-alt">Website</a>');
     if (btns.length) html += '<div class="card-btns">' + btns.join("") + '</div>';
