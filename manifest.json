@@ -1,6 +1,6 @@
 {
-  "name": "SXSW 2026 Trip Guide",
-  "short_name": "SXSW 2026",
+  "name": "Sims@SX26",
+  "short_name": "Sims@SX26",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f5f7",

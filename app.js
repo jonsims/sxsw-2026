@@ -1,4 +1,4 @@
-// SXSW 2026 Trip Guide — app.js
+// Sims@SX26 — app.js
 // Vanilla JS single-page app: Now / Schedule / Reference
 
 // ─── Schedule Data ──────────────────────────────────────────────────────────
@@ -584,9 +584,9 @@ function eventCard(ev, label) {
   // Buttons above detail for one-handed reachability
   const btns = [];
   if (mUrl) btns.push('<a href="' + mUrl + '" class="card-btn">Directions</a>');
-  if (ev.url) btns.push('<a href="' + ev.url + '" class="card-btn card-btn-alt">Session Info</a>');
+  if (ev.url) btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
   if (ev.phone) btns.push('<a href="tel:' + ev.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
-  if (ev.website) btns.push('<a href="' + ev.website + '" class="card-btn card-btn-alt">Website</a>');
+  if (ev.website) btns.push('<a href="' + ev.website + '" target="_blank" class="card-btn card-btn-alt">Website</a>');
   if (btns.length) html += '<div class="card-btns">' + btns.join("") + '</div>';
 
   if (ev.detail) html += '<div class="card-detail">' + ev.detail + '</div>';
@@ -738,9 +738,9 @@ function renderDay(idx) {
 
     const btns = [];
     if (mUrl) btns.push('<a href="' + mUrl + '" class="card-btn">Directions</a>');
-    if (ev.url) btns.push('<a href="' + ev.url + '" class="card-btn card-btn-alt">Session Info</a>');
+    if (ev.url) btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
     if (ev.phone) btns.push('<a href="tel:' + ev.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
-    if (ev.website) btns.push('<a href="' + ev.website + '" class="card-btn card-btn-alt">Website</a>');
+    if (ev.website) btns.push('<a href="' + ev.website + '" target="_blank" class="card-btn card-btn-alt">Website</a>');
     if (btns.length) html += '<div class="card-btns">' + btns.join("") + '</div>';
 
     // Structured options (for explore/lunch events)
@@ -873,7 +873,7 @@ function renderReference() {
   html += '<summary class="ref-title">Key Links</summary>';
   html += '<div class="ref-body">';
   REFERENCE.keyLinks.forEach(l => {
-    html += '<div class="ref-item"><a href="' + l.url + '" class="ref-link">' + l.name + '</a></div>';
+    html += '<div class="ref-item"><a href="' + l.url + '" target="_blank" class="ref-link">' + l.name + '</a></div>';
   });
   html += '</div></details>';
 
@@ -920,7 +920,7 @@ function renderReference() {
   html += '<div class="ref-body">';
   html += '<div class="ref-item">' + REFERENCE.flatstock.detail + '</div>';
   if (REFERENCE.flatstock.description) html += '<div class="ref-item">' + REFERENCE.flatstock.description + '</div>';
-  if (REFERENCE.flatstock.floorMap) html += '<div class="ref-item"><a href="' + REFERENCE.flatstock.floorMap + '" class="ref-link">Interactive Floor Map</a></div>';
+  if (REFERENCE.flatstock.floorMap) html += '<div class="ref-item"><a href="' + REFERENCE.flatstock.floorMap + '" target="_blank" class="ref-link">Interactive Floor Map</a></div>';
   html += '<div class="ref-subhead">Best Times to Go</div><ul>';
   REFERENCE.flatstock.bestTimes.forEach(t => { html += '<li>' + t + '</li>'; });
   html += '</ul>';
