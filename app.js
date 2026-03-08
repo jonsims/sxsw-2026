@@ -1131,8 +1131,7 @@ function initDarkMode() {
     const isDark = document.documentElement.classList.contains("dark");
     localStorage.setItem("sxsw-dark", isDark.toString());
     updateDarkIcon(isDark);
-    document.querySelector('meta[name="theme-color"]')
-      .setAttribute("content", isDark ? "#1a1a2e" : "#2563EB");
+    // Header is always dark, so theme-color stays constant
   });
   updateDarkIcon(document.documentElement.classList.contains("dark"));
 }
