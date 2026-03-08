@@ -26,39 +26,39 @@
   </header>
 
   <!-- NOW VIEW -->
-  <main id="now-view" class="view active">
-    <div id="now-content"></div>
+  <main id="now-view" class="view active" role="tabpanel" aria-label="Now" tabindex="-1">
+    <div id="now-content" aria-live="polite"></div>
   </main>
 
   <!-- SCHEDULE VIEW -->
-  <main id="schedule-view" class="view">
-    <nav class="day-tabs">
-      <button class="day-tab" data-day="0">Thu</button>
-      <button class="day-tab" data-day="1">Fri</button>
-      <button class="day-tab" data-day="2">Sat</button>
-      <button class="day-tab" data-day="3">Sun</button>
-      <button class="day-tab" data-day="4">Mon</button>
+  <main id="schedule-view" class="view" role="tabpanel" aria-label="Schedule" aria-hidden="true" tabindex="-1">
+    <nav class="day-tabs" role="tablist" aria-label="Day selector">
+      <button class="day-tab" role="tab" aria-selected="false" data-day="0">Thu</button>
+      <button class="day-tab" role="tab" aria-selected="false" data-day="1">Fri</button>
+      <button class="day-tab" role="tab" aria-selected="false" data-day="2">Sat</button>
+      <button class="day-tab" role="tab" aria-selected="false" data-day="3">Sun</button>
+      <button class="day-tab" role="tab" aria-selected="false" data-day="4">Mon</button>
     </nav>
     <div id="day-timeline"></div>
   </main>
 
   <!-- REFERENCE VIEW -->
-  <main id="ref-view" class="view">
+  <main id="ref-view" class="view" role="tabpanel" aria-label="Reference" aria-hidden="true" tabindex="-1">
     <div id="ref-content"></div>
   </main>
 
   <!-- TAB BAR -->
-  <nav id="tab-bar">
-    <a href="#now" class="tab active">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <nav id="tab-bar" role="tablist" aria-label="Main navigation">
+    <a href="#now" class="tab active" role="tab" aria-selected="true" aria-controls="now-view">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <span>Now</span>
     </a>
-    <a href="#schedule" class="tab">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <a href="#schedule" class="tab" role="tab" aria-selected="false" aria-controls="schedule-view">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       <span>Schedule</span>
     </a>
-    <a href="#ref" class="tab">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <a href="#ref" class="tab" role="tab" aria-selected="false" aria-controls="ref-view">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
       <span>Reference</span>
     </a>
   </nav>

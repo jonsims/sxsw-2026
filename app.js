@@ -8,11 +8,11 @@ const DAYS = [
     title: "Thursday, March 12",
     subtitle: "Jon Solo | SXSW EDU Day",
     date: "2026-03-12",
-    weather: "71F / 51F - Pleasant",
+    weather: "71\u00B0F / 51\u00B0F - Pleasant",
     events: [
       { time: "7:00 AM", iso: "2026-03-12T07:00:00-05:00", end: "2026-03-12T08:00:00-05:00",
         name: "Run: Town Lake Boardwalk",
-        detail: "4-5 mile boardwalk loop. 51F -- perfect. Out the back of the Fairmont, cross Cesar Chavez, on the trail in 2 min. Sunrise ~7:35 AM. Route options: full loop ~10 mi, boardwalk (south side) ~4-5 mi, east out-and-back ~3 mi.",
+        detail: "4-5 mile boardwalk loop. 51\u00B0F -- perfect. Out the back of the Fairmont, cross Cesar Chavez, on the trail in 2 min. Sunrise ~7:35 AM. Route options: full loop ~10 mi, boardwalk (south side) ~4-5 mi, east out-and-back ~3 mi.",
         venue: "", walk: "", cat: "run", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-12T10:00:00-05:00", end: "2026-03-12T11:00:00-05:00",
         name: "Moonshots that Move the Needle",
@@ -74,7 +74,7 @@ const DAYS = [
         cat: "free", url: "", alts: [] },
       { time: "7:00 PM", iso: "2026-03-12T19:00:00-05:00", end: "2026-03-12T22:00:00-05:00",
         name: "Innovation Opening Party",
-        detail: "Free with badge. Great for solo networking. After: Red River District bars (Mohawk, Cheer Up Charlies) are 5 min east, or head back to Fairmont.",
+        detail: "Free with badge. Great for solo networking. After: Red River District bars (Mohawk, Swan Dive) are 5 min east, or head back to Fairmont.",
         venue: "Brazos Hall (204 E 4th St)", walk: "5 min from Fairmont",
         address: "204 E 4th St, Austin, TX 78701",
         cat: "logistics", url: "", alts: [] },
@@ -84,11 +84,11 @@ const DAYS = [
     title: "Friday, March 13",
     subtitle: "Jon Solo AM - Together from Midday",
     date: "2026-03-13",
-    weather: "83F / 57F - Warm",
+    weather: "83\u00B0F / 57\u00B0F - Warm",
     events: [
       { time: "6:30 AM", iso: "2026-03-13T06:30:00-05:00", end: "2026-03-13T07:30:00-05:00",
         name: "Run: Town Lake",
-        detail: "Full loop (10 mi) or boardwalk (5 mi). 57F, warming fast -- go early. Same trail access: out the back of Fairmont, cross Cesar Chavez, on trail in 2 min. Sunrise ~7:35 AM.",
+        detail: "Full loop (10 mi) or boardwalk (5 mi). 57\u00B0F, warming fast -- go early. Same trail access: out the back of Fairmont, cross Cesar Chavez, on trail in 2 min. Sunrise ~7:35 AM.",
         venue: "", walk: "", cat: "run", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-13T10:00:00-05:00", end: "2026-03-13T11:00:00-05:00",
         name: "Waveform: The MKBHD Podcast Live",
@@ -129,8 +129,8 @@ const DAYS = [
         cat: "free", url: "", alts: [] },
       { time: "6:00 PM", iso: "2026-03-13T18:00:00-05:00", end: "2026-03-13T20:00:00-05:00",
         name: "Dinner: La Condesa",
-        detail: "Modern Mexican. 10 min walk from Fairmont, 10 min walk north from Hotel San Jose. (512) 499-0300",
-        venue: "400 W 2nd St", walk: "10 min walk from SoCo / Fairmont",
+        detail: "Modern Mexican. 10 min walk from Fairmont, 20 min walk north from Hotel San Jose. (512) 499-0300",
+        venue: "400 W 2nd St", walk: "10 min from Fairmont / 20 min from San Jose",
         address: "400 W 2nd St, Austin, TX 78701",
         phone: "(512) 499-0300",
         website: "https://lacondesa.com/",
@@ -141,7 +141,7 @@ const DAYS = [
         venue: "", walk: "",
         cat: "free", url: "",
         options: [
-          { text: "Red River District", note: "Mohawk, Cheer Up Charlies, Swan Dive. 5 min east from La Condesa.", address: "Red River St, Austin, TX 78701" },
+          { text: "Red River District", note: "Mohawk, Swan Dive, Hotel Vegas. 5 min east from La Condesa.", address: "Red River St, Austin, TX 78701" },
           { text: "Congress Ave Block Party", note: "Free drinks/swag. Walk north on Congress from dinner.", address: "Congress Ave, Austin, TX 78701" },
           { text: "Lone Star Roadhouse", note: "East End Ballroom. Live bands + beer market. Free.", address: "" },
           { text: "Fairmont rooftop", note: "Rules & Regs, 7th floor. Cocktails + skyline. If energy is low.", address: "101 Red River St, Austin, TX 78701" },
@@ -153,11 +153,11 @@ const DAYS = [
     title: "Saturday, March 14",
     subtitle: "Together All Day",
     date: "2026-03-14",
-    weather: "85F / 55F - Hot",
+    weather: "85\u00B0F / 55\u00B0F - Hot",
     events: [
       { time: "6:30 AM", iso: "2026-03-14T06:30:00-05:00", end: "2026-03-14T07:30:00-05:00",
         name: "Run: Town Lake Boardwalk",
-        detail: "4-5 mile boardwalk loop. 55F. Back by 7:30. Same trail: out back of Fairmont, cross Cesar Chavez, on trail in 2 min. Hits 85F later -- don't skip this.",
+        detail: "4-5 mile boardwalk loop. 55\u00B0F. Back by 7:30. Same trail: out back of Fairmont, cross Cesar Chavez, on trail in 2 min. Hits 85\u00B0F later -- don't skip this.",
         venue: "", walk: "", cat: "run", url: "", alts: [] },
       { time: "8:30 AM", iso: "2026-03-14T08:30:00-05:00", end: "2026-03-14T09:30:00-05:00",
         name: "Morning Coffee",
@@ -181,12 +181,12 @@ const DAYS = [
         url: "https://schedule.sxsw.com/2026/events/PP1148587", cat: "session", alts: [] },
       { time: "12:30 PM", iso: "2026-03-14T12:30:00-05:00", end: "2026-03-14T15:00:00-05:00",
         name: "Explore Austin Together",
-        detail: "Pick based on energy and heat (85F!):",
+        detail: "Pick based on energy and heat (85\u00B0F!):",
         venue: "", walk: "", cat: "free", url: "",
         options: [
           { text: "Flatstock", note: "Austin Marriott, 7 min. Free poster art. Last day Sun.", address: "304 E Cesar Chavez St, Austin, TX 78701" },
           { text: "South By San Jose", note: "Hotel San Jose, 20 min walk / 5 min Uber. Last day of music!", address: "1316 S Congress Ave, Austin, TX 78704" },
-          { text: "Barton Springs Pool", note: "Uber 10 min. 68F year-round. Bring towels.", address: "2201 Barton Springs Rd, Austin, TX 78746" },
+          { text: "Barton Springs Pool", note: "Uber 10 min. 68\u00B0F year-round. Bring towels.", address: "2201 Barton Springs Rd, Austin, TX 78746" },
           { text: "South Congress walk", note: "Shops, vintage stores, Allen's Boots, food trucks.", address: "South Congress Ave, Austin, TX 78704" },
           { text: "Lady Bird Lake trail", note: "2 min from Fairmont. Shady stretches.", address: "" },
           { text: "Rainey Street preview", note: "10 min. Scout for Sunday dinner at Emmer & Rye.", address: "Rainey St, Austin, TX 78701" },
@@ -229,11 +229,11 @@ const DAYS = [
     title: "Sunday, March 15",
     subtitle: "Together - Last Full Day",
     date: "2026-03-15",
-    weather: "80F / 59F - Warm - Sunset 7:40 PM",
+    weather: "80\u00B0F / 59\u00B0F - Warm - Sunset 7:40 PM",
     events: [
       { time: "9:00 AM", iso: "2026-03-15T09:00:00-05:00", end: "2026-03-15T10:00:00-05:00",
         name: "Breakfast",
-        detail: "Bouldin Creek Cafe (SoCo, great brunch, Uber or 20 min walk) or Good Things (Fairmont lobby). Optional easy 3 mi run on the trail before breakfast.",
+        detail: "Bouldin Creek Cafe (S 1st St, great brunch, Uber or 20 min walk) or Good Things (Fairmont lobby). Optional easy 3 mi run on the trail before breakfast.",
         venue: "", walk: "", cat: "free", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-15T10:00:00-05:00", end: "2026-03-15T11:00:00-05:00",
         name: "Beyond AI: The New American Dream",
@@ -305,7 +305,7 @@ const DAYS = [
     title: "Monday, March 16",
     subtitle: "Check Out & Drive to Houston",
     date: "2026-03-16",
-    weather: "~80F / ~58F",
+    weather: "~80\u00B0F / ~58\u00B0F",
     events: [
       { time: "8:00 AM", iso: "2026-03-16T08:00:00-05:00", end: "2026-03-16T09:00:00-05:00",
         name: "Pack & check bags with Fairmont",
@@ -328,7 +328,7 @@ const DAYS = [
         url: "https://schedule.sxsw.com/2026/events/PP1148488", cat: "session", alts: [] },
       { time: "1:00 PM", iso: "2026-03-16T13:00:00-05:00", end: "2026-03-16T15:30:00-05:00",
         name: "Depart for Houston",
-        detail: "I-10 East, ~165 mi, ~2.5 hrs. Arrive ~3:30 PM. Gas up before leaving Austin. Earlier departure option: skip Ian Beacraft 11:30 session, grab bags, on the road by noon.",
+        detail: "I-10 East, ~165 mi, ~2.5 hrs. Arrive ~3:30 PM. Gas up before leaving Austin. Use Mopac/183 to avoid I-35 construction. Buc-ee's in Luling (~50 min east) for a pit stop. Earlier departure option: skip Ian Beacraft 11:30 session, grab bags, on the road by noon.",
         venue: "", walk: "", cat: "logistics", url: "", alts: [] },
     ],
   },
@@ -357,7 +357,7 @@ const REFERENCE = {
   ],
   restaurants: [
     { name: "La Condesa", date: "Fri 3/13", time: "6:00 PM", phone: "(512) 499-0300", address: "400 W 2nd St, Austin, TX 78701", cuisine: "Modern Mexican", website: "https://lacondesa.com/" },
-    { name: "Kemuri Tatsu-ya", date: "Sat 3/14", time: "7:00 PM", phone: "(512) 803-2224", address: "2713 E 2nd St, Austin, TX 78702", cuisine: "Texas BBQ x Japanese izakaya. Michelin-recognized.", website: "https://www.kemuri-tatsuya.com/" },
+    { name: "Kemuri Tatsu-ya", date: "Sat 3/14", time: "7:15 PM", phone: "(512) 803-2224", address: "2713 E 2nd St, Austin, TX 78702", cuisine: "Texas BBQ x Japanese izakaya. Michelin-recognized.", website: "https://www.kemuri-tatsuya.com/" },
     { name: "Emmer & Rye", date: "Sun 3/15", time: "7:15 PM", phone: "", address: "51 Rainey St, Austin, TX 78701", cuisine: "Seasonal small plates on Rainey Street", website: "https://emmerandrye.com/" },
   ],
   foodDrink: {
@@ -366,7 +366,7 @@ const REFERENCE = {
       { name: "Jo's Coffee", note: "On SoCo. 20 min walk / 5 min Uber. 'I love you so much' mural.", address: "1300 S Congress Ave, Austin, TX 78704" },
     ],
     breakfast: [
-      { name: "Bouldin Creek Cafe", note: "SoCo. Great brunch. 20 min walk / 5 min Uber.", address: "1900 S 1st St, Austin, TX 78704" },
+      { name: "Bouldin Creek Cafe", note: "S 1st St (near SoCo). Great brunch. 20 min walk / 5 min Uber.", address: "1900 S 1st St, Austin, TX 78704" },
     ],
     lunch: [
       { name: "La Barbecue", note: "Michelin-starred brisket. Can have a line. 15 min walk east / 5 min Uber from Hilton.", address: "2401 E Cesar Chavez St, Austin, TX 78702" },
@@ -421,16 +421,16 @@ const REFERENCE = {
     "Congress Ave Block Party -- daily Mar 12-18, free drinks/swag/food",
     "Lone Star Roadhouse -- East End Ballroom, Mar 13-15, live bands + beer market, free",
     "KUTX @ Rivian Showroom -- 2-5pm, Mar 13-15, local/indie artists",
-    "Red River District -- Mohawk, Cheer Up Charlies, Swan Dive, nightly, no badge needed",
+    "Red River District -- Mohawk, Swan Dive, Hotel Vegas, nightly, no badge needed",
     "SXSW Community Concerts -- Auditorium Shores, bring blankets",
     "Unofficial events: RSVPATX.com -- parties, showcases, free food & drinks",
   ],
   austinSpots: [
     { name: "South Congress Ave", note: "Walk the bridge, shops, Allen's Boots, food trucks. Best: Fri/Sat afternoon." },
     { name: "Congress Ave Bridge at Sunset", note: "Bats return mid-March. Sunday evening is ideal (~7:40 sunset)." },
-    { name: "Barton Springs Pool", note: "68F year-round. Saturday at 85F could be perfect. Uber 10 min. Bring towels.", address: "2201 Barton Springs Rd, Austin, TX 78746" },
+    { name: "Barton Springs Pool", note: "68\u00B0F year-round. Saturday at 85\u00B0F could be perfect. Uber 10 min. Bring towels.", address: "2201 Barton Springs Rd, Austin, TX 78746" },
     { name: "Rainey Street", note: "Houses-turned-bars. Sunday dinner at Emmer & Rye is right there. Explore after.", address: "Rainey St, Austin, TX 78701" },
-    { name: "Red River Cultural District", note: "Mohawk, Cheer Up Charlies. Free live music nightly." },
+    { name: "Red River Cultural District", note: "Mohawk, Swan Dive, Hotel Vegas. Free live music nightly." },
     { name: "East Austin", note: "Way more developed now. Kemuri is in the heart of it -- explore after Saturday dinner." },
     { name: "Hotel San Jose", note: "South By San Jose is the perfect excuse to revisit. Vintage courtyard hotel.", address: "1316 S Congress Ave, Austin, TX 78704" },
   ],
@@ -443,7 +443,7 @@ const REFERENCE = {
   logistics: {
     uber: "Uber/Lyft surge pricing is rough during SXSW. Walk when possible. Venues requiring Uber: Kemuri (East Austin, ~10 min), Hotel San Jose (S Congress, 5 min Uber or 20 min walk).",
     dst: "Clocks sprang forward Sunday, March 8 -- already on CDT when we arrive. Sunrise ~7:35 AM, Sunset ~7:40 PM. Long evenings.",
-    houston: "I-10 East, ~165 miles, ~2.5 hours. Leave by 1pm to arrive ~3:30 PM. Gas up before leaving Austin. Earlier option: skip Ian Beacraft 11:30 session, on the road by noon.",
+    houston: "I-10 East, ~165 miles, ~2.5 hours. Leave by 1pm to arrive ~3:30 PM. Gas up before leaving Austin. I-35 construction is ongoing -- use Mopac/183 to avoid it getting out of town. Buc-ee's in Luling (~50 min east on I-10) is a great pit stop. Earlier option: skip Ian Beacraft 11:30 session, on the road by noon.",
   },
   keyLinks: [
     { name: "SXSW Schedule", url: "https://schedule.sxsw.com/" },
@@ -460,7 +460,9 @@ const REFERENCE = {
     "Badge on at all times",
     "Comfortable shoes -- 15,000+ steps/day",
     "Portable charger",
-    "Sunscreen -- 83-85F and lots of outdoor walking between venues",
+    "Sunscreen -- 83-85\u00B0F and lots of outdoor walking between venues",
+    "Stay hydrated -- Austin in March is deceptively dry. Carry a water bottle.",
+    "Pollen alert -- cedar and oak are brutal in March. Pack allergy meds if sensitive.",
     "Almost everything is walkable from the Fairmont (5-7 min to most venues)",
   ],
 };
@@ -469,7 +471,7 @@ const REFERENCE = {
 
 function mapUrl(address) {
   if (!address) return "";
-  return "http://maps.apple.com/?daddr=" + encodeURIComponent(address) + "&dirflg=w";
+  return "https://maps.apple.com/?daddr=" + encodeURIComponent(address) + "&dirflg=w";
 }
 
 const CAT_LABELS = {
@@ -484,13 +486,23 @@ function route() {
   const views = { "#now": "now-view", "#schedule": "schedule-view", "#ref": "ref-view" };
   const viewId = views[hash] || "now-view";
 
-  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
-  document.querySelectorAll("#tab-bar a").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".view").forEach(v => {
+    v.classList.remove("active");
+    v.setAttribute("aria-hidden", "true");
+  });
+  document.querySelectorAll("#tab-bar a").forEach(t => {
+    t.classList.remove("active");
+    t.setAttribute("aria-selected", "false");
+  });
 
   const view = document.getElementById(viewId);
-  if (view) view.classList.add("active");
+  if (view) {
+    view.classList.add("active");
+    view.removeAttribute("aria-hidden");
+  }
 
   const tab = document.querySelector(`#tab-bar a[href="${hash}"]`);
+  if (tab) tab.setAttribute("aria-selected", "true");
   if (tab) tab.classList.add("active");
 
   if (hash === "#now") updateNowView();
@@ -573,9 +585,16 @@ function eventCard(ev, label) {
   const catClass = "cat-" + (ev.cat || "free");
   const isReserved = ev.detail && ev.detail.includes("RESERVED");
 
+  // Compute end time display
+  let endTimeStr = "";
+  if (ev.end) {
+    const endD = new Date(ev.end);
+    endTimeStr = " - " + endD.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  }
+
   let html = '<div class="event-card ' + catClass + '">';
   if (label) html += '<div class="card-label">' + label + '</div>';
-  html += '<div class="card-time">' + ev.time + '</div>';
+  html += '<div class="card-time">' + ev.time + endTimeStr + '</div>';
   html += '<div class="card-name">' + ev.name + '</div>';
   if (isReserved) html += '<div class="card-reserved">Reserved</div>';
   if (ev.venue) html += '<div class="card-venue">' + ev.venue + '</div>';
@@ -584,15 +603,13 @@ function eventCard(ev, label) {
   // Buttons above detail for one-handed reachability
   const btns = [];
   if (mUrl) btns.push('<a href="' + mUrl + '" class="card-btn">Directions</a>');
-  if (ev.url) {
-    btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
-    btns.push('<a href="' + ev.url + '" target="_blank" rel="noreferrer" class="card-btn card-btn-alt">Web</a>');
-  }
+  if (ev.url) btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">SXSW Schedule</a>');
   if (ev.phone) btns.push('<a href="tel:' + ev.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
   if (ev.website) btns.push('<a href="' + ev.website + '" target="_blank" class="card-btn card-btn-alt">Website</a>');
   if (btns.length) html += '<div class="card-btns">' + btns.join("") + '</div>';
 
-  if (ev.detail) html += '<div class="card-detail">' + ev.detail + '</div>';
+  const cleanDetail = ev.detail ? ev.detail.replace(/\bRESERVED\.?\s*/g, "").trim() : "";
+  if (cleanDetail) html += '<div class="card-detail">' + cleanDetail + '</div>';
 
   // Structured options (for explore/lunch events with multiple choices)
   if (ev.options && ev.options.length) {
@@ -617,7 +634,9 @@ function updateNowView() {
 
   let html = '';
 
-  // Day summary + weather
+  // Weather first (most useful at a glance), then day summary
+  html += '<div id="weather-bar"></div>';
+
   const dayIndex = current ? current.dayIndex : (next ? next.dayIndex : getToday());
   if (dayIndex >= 0 && dayIndex < DAYS.length) {
     const day = DAYS[dayIndex];
@@ -625,12 +644,10 @@ function updateNowView() {
     const dinners = day.events.filter(e => e.cat === "dining");
     const dinnerText = dinners.length ? dinners.map(d => d.name.replace("Dinner: ", "")).join(", ") : "";
     html += '<div class="day-summary">';
-    html += '<span class="summary-badge">Day ' + (dayIndex + 1) + ' of 5</span>';
+    html += '<span class="summary-badge">' + day.title + '</span>';
     html += '<span class="summary-text">' + sessions + ' sessions' + (dinnerText ? " / " + dinnerText : "") + '</span>';
     html += '</div>';
   }
-
-  html += '<div id="weather-bar"></div>';
 
   if (status === "done") {
     html += '<div class="now-message">Trip complete! Safe travels to Houston.</div>';
@@ -650,7 +667,7 @@ function updateNowView() {
       const pct = Math.max(0, Math.min(100, ((totalMs - endMs) / totalMs) * 100));
       const urgentClass = endMs < 15 * 60000 ? " progress-urgent" : "";
       html += eventCard(current, "Now");
-      html += '<div class="progress-bar"><div class="progress-fill' + urgentClass + '" style="width:' + pct.toFixed(0) + '%"></div></div>';
+      html += '<div class="progress-bar" role="progressbar" aria-valuenow="' + pct.toFixed(0) + '" aria-valuemin="0" aria-valuemax="100" aria-label="Session progress"><div class="progress-fill' + urgentClass + '" style="width:' + pct.toFixed(0) + '%"></div></div>';
       html += '<div class="progress-label">' + formatCountdown(endMs) + ' remaining</div>';
     }
 
@@ -674,20 +691,54 @@ function updateNowView() {
   }
 
   container.innerHTML = html;
+  lastNowEventKey = (current ? current.iso : "") + "|" + (next ? next.iso : "") + "|" + status;
   fetchWeather();
 }
 
 let nowInterval;
+let lastNowEventKey = "";
+
+function tickNowView() {
+  const { current, next, status } = findCurrentAndNext();
+  const now = new Date();
+
+  // Detect if events changed — if so, do a full rebuild
+  const key = (current ? current.iso : "") + "|" + (next ? next.iso : "") + "|" + status;
+  if (key !== lastNowEventKey) {
+    updateNowView();
+    return;
+  }
+
+  // Otherwise just update countdown + progress in place
+  const progressFill = document.querySelector(".progress-fill");
+  const progressLabel = document.querySelector(".progress-label");
+  if (progressFill && current) {
+    const endMs = new Date(current.end) - now;
+    const totalMs = new Date(current.end) - new Date(current.iso);
+    const pct = Math.max(0, Math.min(100, ((totalMs - endMs) / totalMs) * 100));
+    progressFill.style.width = pct.toFixed(0) + "%";
+    progressFill.classList.toggle("progress-urgent", endMs < 15 * 60000);
+    if (progressLabel) progressLabel.textContent = formatCountdown(endMs) + " remaining";
+  }
+
+  const countdown = document.querySelector(".now-countdown");
+  if (countdown && next) {
+    const ms = new Date(next.iso) - now;
+    countdown.textContent = "Next up in " + formatCountdown(ms);
+  }
+}
+
 function startNowUpdates() {
   if (nowInterval) clearInterval(nowInterval);
   nowInterval = setInterval(() => {
-    if (location.hash === "#now" || !location.hash) updateNowView();
+    if (location.hash === "#now" || !location.hash) tickNowView();
   }, 30000);
 }
 
 // ─── Schedule View ──────────────────────────────────────────────────────────
 
 let activeDay = -1;
+let schedInterval;
 
 function getToday() {
   // Use local date, not UTC, to avoid timezone mismatch
@@ -695,8 +746,11 @@ function getToday() {
   for (let i = 0; i < DAYS.length; i++) {
     if (DAYS[i].date === today) return i;
   }
+  // Compare using local date strings to avoid UTC midnight boundary issues
   const now = new Date();
-  if (now < new Date(DAYS[0].date)) return 0;
+  const todayLocal = now.toLocaleDateString("en-CA");
+  if (todayLocal < DAYS[0].date) return 0;
+  if (todayLocal > DAYS[DAYS.length - 1].date) return DAYS.length - 1;
   return DAYS.length - 1;
 }
 
@@ -711,6 +765,7 @@ function renderDay(idx) {
   document.querySelectorAll(".day-tab").forEach((t, i) => {
     t.classList.toggle("active", i === idx);
     t.classList.toggle("today", DAYS[i].date === todayStr);
+    t.setAttribute("aria-selected", i === idx ? "true" : "false");
   });
 
   let html = '<div class="day-content">';
@@ -731,20 +786,18 @@ function renderDay(idx) {
 
     html += '<details class="sched-card ' + catClass + timeClass + '">';
     html += '<summary>';
-    html += '<span class="sc-time">' + ev.time + (isReserved ? ' <span class="sc-reserved">Reserved</span>' : '') + '</span>';
+    html += '<span class="sc-time">' + ev.time + (isReserved ? ' <span class="sc-reserved">Reserved</span>' : '') + ' <span class="sc-cat-badge ' + catClass + '">' + (CAT_LABELS[ev.cat] || "Event") + '</span></span>';
     html += '<span class="sc-name">' + ev.name + '</span>';
     if (ev.venue) html += '<span class="sc-venue">' + ev.venue + '</span>';
     if (ev.walk) html += '<span class="sc-walk">' + ev.walk + '</span>';
     html += '</summary>';
     html += '<div class="sc-expand">';
-    if (ev.detail) html += '<p class="sc-detail">' + ev.detail + '</p>';
+    const scDetail = ev.detail ? ev.detail.replace(/\bRESERVED\.?\s*/g, "").trim() : "";
+    if (scDetail) html += '<p class="sc-detail">' + scDetail + '</p>';
 
     const btns = [];
     if (mUrl) btns.push('<a href="' + mUrl + '" class="card-btn">Directions</a>');
-    if (ev.url) {
-    btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">Open in SXSW GO</a>');
-    btns.push('<a href="' + ev.url + '" target="_blank" rel="noreferrer" class="card-btn card-btn-alt">Web</a>');
-  }
+    if (ev.url) btns.push('<a href="' + ev.url + '" target="_blank" class="card-btn card-btn-alt">SXSW Schedule</a>');
     if (ev.phone) btns.push('<a href="tel:' + ev.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
     if (ev.website) btns.push('<a href="' + ev.website + '" target="_blank" class="card-btn card-btn-alt">Website</a>');
     if (btns.length) html += '<div class="card-btns">' + btns.join("") + '</div>';
@@ -777,6 +830,21 @@ function renderDay(idx) {
   html += '</div>';
   timeline.innerHTML = html;
 
+  // Auto-refresh schedule card states every 60s
+  if (schedInterval) clearInterval(schedInterval);
+  schedInterval = setInterval(() => {
+    if (location.hash !== "#schedule" || activeDay !== idx) return;
+    const n = new Date();
+    document.querySelectorAll(".sched-card").forEach((card, ci) => {
+      const ev = day.events[ci];
+      if (!ev) return;
+      const isPast = new Date(ev.end) < n;
+      const isCur = n >= new Date(ev.iso) && n < new Date(ev.end);
+      card.classList.toggle("past-event", isPast);
+      card.classList.toggle("current-event", isCur);
+    });
+  }, 60000);
+
   // Scroll to current/next event if viewing today
   if (day.date === todayStr) {
     const cur = timeline.querySelector(".current-event");
@@ -790,11 +858,28 @@ function renderReference() {
   const container = document.getElementById("ref-content");
   let html = '';
 
+  // Quick-nav pills
+  html += '<div class="ref-nav">';
+  const pills = [
+    { id: "ref-dinners", label: "Dinner" },
+    { id: "ref-hotel", label: "Hotel" },
+    { id: "ref-venues", label: "Venues" },
+    { id: "ref-food", label: "Food" },
+    { id: "ref-tips", label: "Tips" },
+    { id: "ref-sanjose", label: "San Jose" },
+    { id: "ref-comedy", label: "Comedy" },
+    { id: "ref-spots", label: "Spots" },
+  ];
+  pills.forEach(p => {
+    html += '<a href="#" class="ref-pill" data-target="' + p.id + '">' + p.label + '</a>';
+  });
+  html += '</div>';
+
   // ── Quick Reference ──
   html += '<div class="ref-group-label">Quick Reference</div>';
 
   // Restaurants first — most referenced during trip
-  html += '<details class="ref-section" open>';
+  html += '<details class="ref-section" id="ref-dinners" open>';
   html += '<summary class="ref-title">Dinner Reservations</summary>';
   html += '<div class="ref-body">';
   REFERENCE.restaurants.forEach(r => {
@@ -812,7 +897,7 @@ function renderReference() {
   html += '</div></details>';
 
   // Hotel
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-hotel">';
   html += '<summary class="ref-title">Hotel</summary>';
   html += '<div class="ref-body">';
   html += '<div class="ref-item"><strong>' + REFERENCE.hotel.name + '</strong></div>';
@@ -825,7 +910,7 @@ function renderReference() {
   html += '</div></details>';
 
   // Venues
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-venues">';
   html += '<summary class="ref-title">Venue Distances (from Fairmont)</summary>';
   html += '<div class="ref-body"><table class="venue-table"><thead><tr><th>Venue</th><th>Walk</th></tr></thead><tbody>';
   REFERENCE.venues.forEach(v => {
@@ -834,7 +919,7 @@ function renderReference() {
   html += '</tbody></table></div></details>';
 
   // Food & Drink
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-food">';
   html += '<summary class="ref-title">Coffee, Breakfast & Lunch</summary>';
   html += '<div class="ref-body">';
   html += '<div class="ref-subhead">Coffee</div>';
@@ -868,7 +953,7 @@ function renderReference() {
   html += '</div></details>';
 
   // Tips
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-tips">';
   html += '<summary class="ref-title">Tips</summary>';
   html += '<div class="ref-body"><ul>';
   REFERENCE.tips.forEach(t => { html += '<li>' + t + '</li>'; });
@@ -899,7 +984,7 @@ function renderReference() {
   html += '<div class="ref-group-label">Things to Do</div>';
 
   // South By San Jose
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-sanjose">';
   html += '<summary class="ref-title">' + REFERENCE.sanJose.title + '</summary>';
   html += '<div class="ref-body">';
   html += '<div class="ref-item">' + REFERENCE.sanJose.detail + '</div>';
@@ -936,7 +1021,7 @@ function renderReference() {
   html += '</div></details>';
 
   // Comedy Shows
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-comedy">';
   html += '<summary class="ref-title">' + REFERENCE.comedy.title + '</summary>';
   html += '<div class="ref-body">';
   html += '<div class="ref-item">' + REFERENCE.comedy.note + '</div>';
@@ -950,7 +1035,7 @@ function renderReference() {
   html += '</div></details>';
 
   // Austin Spots
-  html += '<details class="ref-section">';
+  html += '<details class="ref-section" id="ref-spots">';
   html += '<summary class="ref-title">Austin Spots to Hit</summary>';
   html += '<div class="ref-body">';
   REFERENCE.austinSpots.forEach(s => {
@@ -999,12 +1084,12 @@ async function fetchWeather() {
     const lo = data.daily ? Math.round(data.daily.temperature_2m_min[0]) : "";
 
     let html = '<div class="weather-now">' +
-      '<span class="weather-temp">' + Math.round(cur.temperature_2m) + 'F</span>' +
+      '<span class="weather-temp">' + Math.round(cur.temperature_2m) + '\u00B0F</span>' +
       '<span class="weather-desc">' + wDesc + '</span>' +
       '<span class="weather-loc">Austin, TX</span>' +
       '</div>';
     if (hi && lo) {
-      html += '<div class="weather-range">High ' + hi + 'F / Low ' + lo + 'F</div>';
+      html += '<div class="weather-range">High ' + hi + '\u00B0F / Low ' + lo + '\u00B0F</div>';
     }
 
     weatherCache = { html, ts: Date.now() };
@@ -1043,9 +1128,20 @@ function initDarkMode() {
 
   document.getElementById("darkToggle").addEventListener("click", () => {
     document.documentElement.classList.toggle("dark");
-    localStorage.setItem("sxsw-dark",
-      document.documentElement.classList.contains("dark").toString());
+    const isDark = document.documentElement.classList.contains("dark");
+    localStorage.setItem("sxsw-dark", isDark.toString());
+    updateDarkIcon(isDark);
+    document.querySelector('meta[name="theme-color"]')
+      .setAttribute("content", isDark ? "#1a1a2e" : "#2563EB");
   });
+  updateDarkIcon(document.documentElement.classList.contains("dark"));
+}
+
+function updateDarkIcon(isDark) {
+  const btn = document.getElementById("darkToggle");
+  btn.innerHTML = isDark
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
 }
 
 // ─── Init ───────────────────────────────────────────────────────────────────
@@ -1058,6 +1154,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Day tabs
   document.querySelectorAll(".day-tab").forEach((tab, i) => {
     tab.addEventListener("click", () => renderDay(i));
+  });
+
+  // Reference nav pills
+  document.getElementById("ref-content").addEventListener("click", e => {
+    const pill = e.target.closest(".ref-pill");
+    if (!pill) return;
+    e.preventDefault();
+    const target = document.getElementById(pill.dataset.target);
+    if (target) {
+      target.open = true;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 
   window.addEventListener("hashchange", route);

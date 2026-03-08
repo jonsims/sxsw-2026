@@ -6,12 +6,12 @@
   --bg: #f5f5f7;
   --surface: #ffffff;
   --text: #1a1a1a;
-  --text-secondary: #666;
-  --text-tertiary: #999;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #767676;
   --border: #e5e5e5;
   --session: #2563EB;
   --dining: #EA580C;
-  --comedy: #EA580C;
+  --comedy: #9333EA;
   --run: #16A34A;
   --free: #16A34A;
   --logistics: #6B7280;
@@ -25,7 +25,7 @@ html.dark {
   --surface: #25253e;
   --text: #e8e8f0;
   --text-secondary: #a0a0b8;
-  --text-tertiary: #707088;
+  --text-tertiary: #9090a8;
   --border: #35355a;
   --shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
@@ -44,7 +44,6 @@ html {
 }
 
 body {
-  padding-top: env(safe-area-inset-top);
   padding-bottom: calc(60px + env(safe-area-inset-bottom));
   min-height: 100vh;
   min-height: 100dvh;
@@ -276,10 +275,7 @@ html.dark #tab-bar a svg {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.event-card:active {
-  transform: scale(0.98);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-}
+/* Cards are not directly interactive — no :active feedback */
 
 .event-card.cat-session { border-left-color: var(--session); }
 .event-card.cat-dining { border-left-color: var(--dining); }
@@ -296,6 +292,13 @@ html.dark #tab-bar a svg {
   color: var(--accent);
   margin-bottom: 4px;
 }
+
+.event-card.cat-session .card-label { color: var(--session); }
+.event-card.cat-dining .card-label { color: var(--dining); }
+.event-card.cat-comedy .card-label { color: var(--comedy); }
+.event-card.cat-run .card-label { color: var(--run); }
+.event-card.cat-free .card-label { color: #0EA5E9; }
+.event-card.cat-logistics .card-label { color: var(--logistics); }
 
 .card-reserved {
   display: inline-block;
@@ -380,14 +383,14 @@ html.dark .card-reserved {
 
 .day-tabs {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   margin-bottom: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   position: sticky;
-  top: 0;
+  top: calc(49px + env(safe-area-inset-top));
   z-index: 50;
-  padding: 8px 0;
+  padding: 8px 16px;
   background: var(--bg);
 }
 
@@ -485,6 +488,28 @@ html.dark .day-tab.today:not(.active) {
 
 .sched-card summary::-webkit-details-marker { display: none; }
 
+.sched-card summary {
+  position: relative;
+  padding-right: 40px;
+}
+
+.sched-card summary::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-tertiary);
+  border-bottom: 2px solid var(--text-tertiary);
+  transform: translateY(-60%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.sched-card[open] summary::after {
+  transform: translateY(-40%) rotate(-135deg);
+}
+
 .sched-card[open] .sc-expand {
   animation: expandIn 0.2s ease-out;
 }
@@ -539,6 +564,24 @@ html.dark .sc-reserved {
   font-size: 13px;
   color: var(--text-tertiary);
 }
+
+.sc-cat-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.sc-cat-badge.cat-session { background: rgba(37, 99, 235, 0.1); color: var(--session); }
+.sc-cat-badge.cat-dining { background: rgba(234, 88, 12, 0.1); color: var(--dining); }
+.sc-cat-badge.cat-comedy { background: rgba(147, 51, 234, 0.1); color: var(--comedy); }
+.sc-cat-badge.cat-run { background: rgba(22, 163, 74, 0.1); color: var(--run); }
+.sc-cat-badge.cat-free { background: rgba(14, 165, 233, 0.1); color: #0EA5E9; }
+.sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.1); color: var(--logistics); }
 
 .sc-expand {
   padding: 0 16px 16px;
@@ -756,6 +799,38 @@ html.dark .sc-reserved {
   margin-left: 4px;
 }
 
+/* Reference nav pills */
+.ref-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0 12px;
+  margin-bottom: 4px;
+}
+
+.ref-pill {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ref-pill:active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
 /* Group labels for Reference tab sections */
 .ref-group-label {
   font-size: 11px;
@@ -792,5 +867,14 @@ html.dark .sc-reserved {
 
 .option-item:last-child {
   border-bottom: none;
+}
+
+/* ─── Reduced Motion ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
