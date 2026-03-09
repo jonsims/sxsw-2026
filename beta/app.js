@@ -362,6 +362,24 @@ const WALK_TIMES = {
   rivian:    { fairmont: 15, hilton: 17, jw: 15, marriott: 12, line: 14, westin: 20, courtyard: 22, sanjose: 10, esthers: 18, kemuri: 20, emmer: 8, brazos: 17, rivian: 0 },
 };
 
+// ─── Venue Coordinates (for map view) ───────────────────────────────────────
+
+const VENUE_COORDS = {
+  fairmont:  { lat: 30.2627, lng: -97.7394, address: "101 Red River St" },
+  hilton:    { lat: 30.2647, lng: -97.7401, address: "500 E 4th St" },
+  jw:        { lat: 30.2660, lng: -97.7430, address: "110 E 2nd St" },
+  marriott:  { lat: 30.2680, lng: -97.7440, address: "304 E Cesar Chavez St" },
+  line:      { lat: 30.2655, lng: -97.7452, address: "111 E Cesar Chavez St" },
+  westin:    { lat: 30.2690, lng: -97.7400, address: "310 E 5th St" },
+  courtyard: { lat: 30.2710, lng: -97.7390, address: "300 E 4th St" },
+  sanjose:   { lat: 30.2530, lng: -97.7500, address: "1316 S Congress Ave" },
+  esthers:   { lat: 30.2670, lng: -97.7390, address: "525 E 6th St" },
+  kemuri:    { lat: 30.2580, lng: -97.7240, address: "2713 E 2nd St" },
+  emmer:     { lat: 30.2610, lng: -97.7380, address: "51 Rainey St" },
+  brazos:    { lat: 30.2670, lng: -97.7385, address: "204 E 4th St" },
+  rivian:    { lat: 30.2560, lng: -97.7350, address: "1509 S Congress Ave" },
+};
+
 // ─── Alt Parser ────────────────────────────────────────────────────────────
 
 function parseAlt(altStr) {
@@ -569,7 +587,7 @@ const CAT_LABELS = {
 
 function route() {
   const hash = location.hash || "#now";
-  const views = { "#now": "now-view", "#schedule": "schedule-view", "#ref": "ref-view" };
+  const views = { "#now": "now-view", "#schedule": "schedule-view", "#map": "map-view", "#ref": "ref-view" };
   const viewId = views[hash] || "now-view";
 
   document.querySelectorAll(".view").forEach(v => {
@@ -589,6 +607,7 @@ function route() {
 
   if (hash === "#now") updateNowView();
   if (hash === "#schedule" && !document.querySelector(".day-content")) renderDay(getToday());
+  if (hash === "#map") initMap(getToday());
 }
 
 // ─── Now View ──────────────────────────────────────────────────────────────
@@ -644,6 +663,63 @@ function formatCountdown(ms) {
   const h = Math.floor(totalMin / 60);
   const m = totalMin % 60;
   return h + "h " + (m > 0 ? m + "m" : "");
+}
+
+function buildWalkCard(current, next, now) {
+  const fromKey = venueKeyFromEvent(current);
+  const toKey = venueKeyFromEvent(next);
+  const walkMin = getWalkTime(fromKey, toKey);
+  const fromName = current.venue ? current.venue.split("(")[0].trim() : (VENUE_KEY[fromKey] || "Current venue");
+  const toName = next.venue ? next.venue.split("(")[0].trim() : (VENUE_KEY[toKey] || "Next venue");
+
+  const currentEnd = new Date(current.end);
+  const nextStart = new Date(next.iso);
+  const gapMin = Math.round((nextStart - currentEnd) / 60000);
+  const bufferMin = gapMin - walkMin;
+  const endMs = currentEnd - now;
+  const leaveMs = endMs; // leave when current event ends
+  const leaveIn = Math.max(0, Math.round(leaveMs / 60000));
+
+  // When should they actually leave?
+  const latestLeaveMs = nextStart - now - walkMin * 60000;
+  const latestLeaveMin = Math.max(0, Math.round(latestLeaveMs / 60000));
+
+  let urgency = "walk-ok";
+  let urgencyText = bufferMin + " min buffer";
+  if (bufferMin < 0) {
+    urgency = "walk-tight";
+    urgencyText = "Cutting it close!";
+  } else if (bufferMin < 5) {
+    urgency = "walk-tight";
+    urgencyText = "Tight — " + bufferMin + " min buffer";
+  }
+
+  // Directions URL
+  const nextAddr = next.address || "";
+  const dirUrl = nextAddr ? mapUrl(nextAddr) : "";
+
+  let html = '<div class="walk-card ' + urgency + '">';
+  html += '<div class="walk-header">';
+  html += '<svg class="walk-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5"/><path d="M9 22l1-7 2 1V9l3.5-1L17 11h2"/><path d="M9 22l-1-5 3-3"/></svg>';
+  html += '<div class="walk-info">';
+  html += '<div class="walk-title">' + walkMin + ' min walk to ' + toName + '</div>';
+  html += '<div class="walk-from">' + fromName + ' → ' + toName + '</div>';
+  html += '</div>';
+  html += '<div class="walk-timing ' + urgency + '">' + urgencyText + '</div>';
+  html += '</div>';
+
+  // Leave-by reminder
+  if (leaveIn > 0 && latestLeaveMin > 0) {
+    html += '<div class="walk-leave">Leave in ~' + latestLeaveMin + ' min to arrive on time</div>';
+  } else if (latestLeaveMin <= 0) {
+    html += '<div class="walk-leave walk-leave-now">Time to start walking!</div>';
+  }
+
+  if (dirUrl) {
+    html += '<a href="' + dirUrl + '" class="walk-directions-btn">Walking Directions</a>';
+  }
+  html += '</div>';
+  return html;
 }
 
 function eventCard(ev, label) {
@@ -720,6 +796,10 @@ function updateNowView() {
       html += eventCard(current, "Now");
       html += '<div class="progress-bar"><div class="progress-fill' + urgentClass + '" style="width:' + pct.toFixed(0) + '%"></div></div>';
       html += '<div class="progress-label">' + formatCountdown(endMs) + ' remaining</div>';
+    }
+    // Walking directions between current and next
+    if (current && next) {
+      html += buildWalkCard(current, next, now);
     }
     if (next) {
       html += '<div class="now-countdown">Next up in ' + formatCountdown(new Date(next.iso) - now) + '</div>';
@@ -972,6 +1052,7 @@ function initDarkMode() {
     const isDark = document.documentElement.classList.contains("dark");
     localStorage.setItem("sxsw-dark", isDark.toString());
     updateDarkIcon(isDark);
+    setMapTiles(isDark);
   });
   updateDarkIcon(document.documentElement.classList.contains("dark"));
 }
@@ -983,15 +1064,201 @@ function updateDarkIcon(isDark) {
     : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
 }
 
+// ─── Map View ───────────────────────────────────────────────────────────────
+
+let mapInstance = null;
+let mapMarkers = [];
+let mapLines = [];
+let activeMapDay = -1;
+
+const CAT_COLORS = {
+  session: "#2563EB",
+  dining: "#EA580C",
+  comedy: "#9333EA",
+  run: "#16A34A",
+  free: "#0EA5E9",
+  logistics: "#64748B",
+};
+
+function initMap(dayIdx) {
+  if (dayIdx < 0) dayIdx = 0;
+
+  // Update map day tabs
+  document.querySelectorAll(".map-day-tab").forEach((t, i) => {
+    t.classList.toggle("active", i === dayIdx);
+  });
+
+  if (!mapInstance) {
+    mapInstance = L.map("map-container", {
+      zoomControl: false,
+      attributionControl: false,
+    }).setView([30.2640, -97.7410], 15);
+
+    L.control.zoom({ position: "topright" }).addTo(mapInstance);
+
+    // Use a clean tile style
+    const isDark = document.documentElement.classList.contains("dark");
+    setMapTiles(isDark);
+  }
+
+  // Need to invalidate size after view becomes visible
+  setTimeout(() => mapInstance.invalidateSize(), 100);
+
+  if (activeMapDay !== dayIdx) {
+    activeMapDay = dayIdx;
+    renderMapDay(dayIdx);
+  }
+}
+
+function setMapTiles(isDark) {
+  if (!mapInstance) return;
+  // Remove existing tile layers
+  mapInstance.eachLayer(l => { if (l instanceof L.TileLayer) mapInstance.removeLayer(l); });
+
+  if (isDark) {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 19,
+    }).addTo(mapInstance);
+  } else {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+      maxZoom: 19,
+    }).addTo(mapInstance);
+  }
+}
+
+function renderMapDay(dayIdx) {
+  const day = DAYS[dayIdx];
+
+  // Clear existing markers and lines
+  mapMarkers.forEach(m => mapInstance.removeLayer(m));
+  mapLines.forEach(l => mapInstance.removeLayer(l));
+  mapMarkers = [];
+  mapLines = [];
+
+  const bounds = [];
+  const routePoints = [];
+  let eventNum = 0;
+
+  day.events.forEach((ev, evIdx) => {
+    const venueKey = venueKeyFromEvent(ev);
+    const coords = VENUE_COORDS[venueKey];
+    if (!coords) return;
+
+    eventNum++;
+    const cat = ev.cat || "logistics";
+    const color = CAT_COLORS[cat] || CAT_COLORS.logistics;
+    const swap = getSwap(dayIdx, evIdx);
+    const isSwapped = swap !== null;
+
+    // Check if swapped to a different venue
+    let displayName = ev.name;
+    let displayVenue = ev.venue || VENUE_KEY[venueKey] || "";
+    let markerCoords = [coords.lat, coords.lng];
+
+    if (isSwapped && ev.alts[swap.altIdx]) {
+      const alt = parseAlt(ev.alts[swap.altIdx]);
+      if (alt.venueKey && VENUE_COORDS[alt.venueKey]) {
+        const altCoords = VENUE_COORDS[alt.venueKey];
+        markerCoords = [altCoords.lat, altCoords.lng];
+        displayName = alt.name;
+        displayVenue = alt.venueName || VENUE_KEY[alt.venueKey] || "";
+      }
+    }
+
+    // Numbered circle marker
+    const markerIcon = L.divIcon({
+      className: "map-marker-icon",
+      html: '<div class="map-marker" style="background:' + color + (isSwapped ? ";border:2px solid #d97706" : "") + '">' + eventNum + '</div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+    });
+
+    const marker = L.marker(markerCoords, { icon: markerIcon }).addTo(mapInstance);
+    marker.bindPopup(
+      '<div class="map-popup">' +
+      '<strong>' + ev.time + '</strong><br>' +
+      '<span style="color:' + color + '">' + displayName + '</span><br>' +
+      '<small>' + displayVenue + '</small>' +
+      (isSwapped ? '<br><em style="color:#d97706">Swapped</em>' : '') +
+      '</div>'
+    );
+
+    mapMarkers.push(marker);
+    bounds.push(markerCoords);
+    routePoints.push(markerCoords);
+  });
+
+  // Draw route lines between consecutive events
+  for (let i = 0; i < routePoints.length - 1; i++) {
+    const line = L.polyline([routePoints[i], routePoints[i + 1]], {
+      color: "#6366f1",
+      weight: 2,
+      opacity: 0.5,
+      dashArray: "6, 8",
+    }).addTo(mapInstance);
+    mapLines.push(line);
+  }
+
+  // Fit bounds with padding
+  if (bounds.length > 1) {
+    mapInstance.fitBounds(bounds, { padding: [40, 40] });
+  } else if (bounds.length === 1) {
+    mapInstance.setView(bounds[0], 15);
+  }
+
+  // Build legend
+  buildMapLegend(day, dayIdx);
+}
+
+function buildMapLegend(day, dayIdx) {
+  const legend = document.getElementById("map-legend");
+  let html = '<div class="map-legend-title">' + day.title + '</div>';
+  html += '<div class="map-legend-items">';
+
+  let num = 0;
+  day.events.forEach((ev, evIdx) => {
+    const venueKey = venueKeyFromEvent(ev);
+    if (!VENUE_COORDS[venueKey]) return;
+    num++;
+
+    const cat = ev.cat || "logistics";
+    const color = CAT_COLORS[cat] || CAT_COLORS.logistics;
+    const swap = getSwap(dayIdx, evIdx);
+    const isSwapped = swap !== null;
+    let name = ev.name;
+
+    if (isSwapped && ev.alts[swap.altIdx]) {
+      const alt = parseAlt(ev.alts[swap.altIdx]);
+      name = alt.name;
+    }
+
+    html += '<div class="map-legend-item">';
+    html += '<span class="map-legend-num" style="background:' + color + '">' + num + '</span>';
+    html += '<span class="map-legend-time">' + ev.time + '</span>';
+    html += '<span class="map-legend-name">' + name.substring(0, 35) + (name.length > 35 ? '...' : '') + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  legend.innerHTML = html;
+}
+
 // ─── Init ──────────────────────────────────────────────────────────────────
 
 document.addEventListener("DOMContentLoaded", () => {
   initDarkMode();
   startNowUpdates();
 
-  // Day tabs
-  document.querySelectorAll(".day-tab").forEach((tab, i) => {
+  // Day tabs (schedule view)
+  document.querySelectorAll(".day-tab:not(.map-day-tab)").forEach((tab, i) => {
     tab.addEventListener("click", () => renderDay(i));
+  });
+
+  // Map day tabs
+  document.querySelectorAll(".map-day-tab").forEach((tab, i) => {
+    tab.addEventListener("click", () => {
+      activeMapDay = -1; // force re-render
+      initMap(i);
+    });
   });
 
   // Swap button delegation
