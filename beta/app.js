@@ -583,6 +583,328 @@ const CAT_LABELS = {
   run: "Run", free: "Explore", logistics: "Logistics",
 };
 
+// ─── Reference Data ───────────────────────────────────────────────────────
+
+const REFERENCE = {
+  hotel: {
+    name: "Fairmont Austin",
+    address: "101 Red River St, Austin, TX 78701",
+    checkIn: "March 11, 3:00 PM",
+    checkOut: "March 16, 11:00 AM",
+    rooftop: "Rules & Regs -- 7th floor, pool deck + skyline views",
+    lobby: "Good Things -- coffee + pastries",
+  },
+  venues: [
+    { name: "JW Marriott", address: "110 E 2nd St", walk: "5 min" },
+    { name: "Hilton Austin Downtown", address: "500 E 4th St", walk: "5 min" },
+    { name: "Austin Marriott Downtown", address: "304 E Cesar Chavez", walk: "7 min" },
+    { name: "The LINE", address: "111 E Cesar Chavez", walk: "5 min" },
+    { name: "Esther's Follies", address: "525 E 6th St", walk: "5 min" },
+    { name: "Creek and the Cave", address: "611 E 7th St", walk: "7 min" },
+    { name: "La Condesa", address: "400 W 2nd St", walk: "10 min" },
+    { name: "Hotel San Jose", address: "1316 S Congress", walk: "20 min / 5 min Uber" },
+    { name: "Kemuri Tatsu-ya", address: "2713 E 2nd St", walk: "10 min Uber" },
+    { name: "Emmer & Rye", address: "51 Rainey St", walk: "10 min" },
+  ],
+  restaurants: [
+    { name: "La Condesa", date: "Fri 3/13", time: "6:00 PM", phone: "(512) 499-0300", address: "400 W 2nd St, Austin, TX 78701", cuisine: "Modern Mexican", website: "https://lacondesa.com/" },
+    { name: "Kemuri Tatsu-ya", date: "Sat 3/14", time: "7:15 PM", phone: "(512) 803-2224", address: "2713 E 2nd St, Austin, TX 78702", cuisine: "Texas BBQ x Japanese izakaya. Michelin-recognized.", website: "https://www.kemuri-tatsuya.com/" },
+    { name: "Emmer & Rye", date: "Sun 3/15", time: "7:15 PM", phone: "", address: "51 Rainey St, Austin, TX 78701", cuisine: "Seasonal small plates on Rainey Street", website: "https://emmerandrye.com/" },
+  ],
+  foodDrink: {
+    coffee: [
+      { name: "Good Things", note: "Fairmont lobby. Quick and easy.", address: "" },
+      { name: "Jo's Coffee", note: "On SoCo. 20 min walk / 5 min Uber. 'I love you so much' mural.", address: "1300 S Congress Ave, Austin, TX 78704" },
+    ],
+    breakfast: [
+      { name: "Bouldin Creek Cafe", note: "S 1st St (near SoCo). Great brunch. 20 min walk / 5 min Uber.", address: "1900 S 1st St, Austin, TX 78704" },
+    ],
+    lunch: [
+      { name: "La Barbecue", note: "Michelin-starred brisket. Can have a line. 15 min walk east / 5 min Uber from Hilton.", address: "2401 E Cesar Chavez St, Austin, TX 78702" },
+      { name: "Cuantos Tacos", note: "Michelin-recognized food truck. Quick and delicious.", address: "" },
+      { name: "Convention Center food", note: "Quick options between sessions.", address: "" },
+      { name: "2nd St District", note: "Near Fairmont. Multiple quick-service options.", address: "" },
+    ],
+  },
+  sanJose: {
+    title: "South By San Jose",
+    detail: "Hotel San Jose, 1316 S Congress Ave | Mar 12-14 | Noon daily | Free",
+    description: "We love this hotel. Music in the parking lot, vintage vendors, great vibe.",
+    lineup: "Charlie Sexton Quartet, DeVotchKa, Tune-Yards, Sugaree & Cold Sweat, Sana Sana, Bricknasty, Karma Sheen, The Animeros, The Band Loula, The Sophs, Diles Que No Me Maten, Jo Alice, Next of Kin, Whitelands, Okan, Grocery Bag, Men An Tol, Calder, Angela Autumn, Horsepower, Still Blank, Ella Ion, The Bures Band, Valley Flower",
+    highlights: [
+      { name: "DeVotchKa", note: "Cinematic indie rock (Little Miss Sunshine soundtrack). Incredible live." },
+      { name: "Tune-Yards", note: "Artsy, percussive, high-energy. Merrill Garbus is a force." },
+      { name: "Charlie Sexton Quartet", note: "Austin legend. Played guitar with Bob Dylan for 20+ years. Hometown homecoming." },
+      { name: "Sana Sana", note: "Latin-influenced Austin band. Great energy." },
+      { name: "Next of Kin", note: "Austin locals worth catching." },
+    ],
+    note: "Day-by-day set times not yet published. Check @hotelsanjose on Instagram day-of. Also features vintage clothing vendors (Sugar Shack Vintage, Richter Goods), jewelry, ceramics, and limited-edition merch.",
+    bestTimes: [
+      "Thu afternoon -- Jon solo after the Fairmont session. 20 min walk across Congress bridge.",
+      "Fri 3:30-5:30 together -- before La Condesa at 6. Walk up Congress to dinner.",
+      "Sat early afternoon -- Last day. Part of the 12:30-3:00 exploring block."
+    ],
+    address: "1316 S Congress Ave, Austin, TX 78704",
+  },
+  flatstock: {
+    title: "Flatstock",
+    detail: "Austin Marriott Downtown (304 E Cesar Chavez) | Mar 13-15 | 10am-5pm | Free",
+    description: "Handmade, limited-edition concert posters from the world's top gig poster artists. Meet the artists, buy prints.",
+    floorMap: "https://sxsw2026-flatstock.expofp.com",
+    bestTimes: [
+      "Fri 2:30 -- Christina solo while Jon is at Space Superhighway. 7 min from Fairmont. Meet up at 3:30.",
+      "Sat 12:30-3:00 -- Together, part of afternoon exploring.",
+      "Sun 10:00 -- Last day. Before Pivot Live at 11:30 (Austin Marriott to Hilton is 7 min walk)."
+    ],
+    address: "304 E Cesar Chavez St, Austin, TX 78701",
+  },
+  comedy: {
+    title: "Comedy Shows (Saturday 3/14)",
+    note: "Innovation Badge covers all comedy. Our pick is the 6pm show -- fits before Kemuri dinner.",
+    shows: [
+      { time: "6:00-7:15 PM", name: "The Stand Comedy Club: 10 for 10 Podcast Live", venue: "Esther's Follies (525 E 6th St)", walk: "5 min", status: "Our pick", note: "Fits before Kemuri dinner" },
+      { time: "7:00-8:15 PM", name: "Don't Tell Comedy All Stars", venue: "Creek and the Cave (611 E 7th St)", walk: "7 min", status: "Skip", note: "Conflicts with Kemuri" },
+      { time: "8:00-9:15 PM", name: "Funny Or Die Approved", venue: "Esther's Follies", walk: "5 min", status: "Skip", note: "Conflicts with Kemuri" },
+    ],
+    alsoInTown: "Bill Burr is hosting a showcase (FOX's 'Plantman & Blondie' premiere). Eric Andre and Chelsea Peretti performing at various SXSW comedy events. Check the Comedy schedule for shows on other nights.",
+  },
+  freeEvents: [
+    "Congress Ave Block Party -- daily Mar 12-18, free drinks/swag/food",
+    "Lone Star Roadhouse -- East End Ballroom, Mar 13-15, live bands + beer market, free",
+    "KUTX @ Rivian Showroom -- 2-5pm, Mar 13-15, local/indie artists",
+    "Red River District -- Mohawk, Swan Dive, Hotel Vegas, nightly, no badge needed",
+    "SXSW Community Concerts -- Auditorium Shores, bring blankets",
+    "Unofficial events: RSVPATX.com -- parties, showcases, free food & drinks",
+  ],
+  austinSpots: [
+    { name: "South Congress Ave", note: "Walk the bridge, shops, Allen's Boots, food trucks. Best: Fri/Sat afternoon." },
+    { name: "Congress Ave Bridge at Sunset", note: "Bats return mid-March. Sunday evening is ideal (~7:40 sunset)." },
+    { name: "Barton Springs Pool", note: "68\u00B0F year-round. Saturday at 85\u00B0F could be perfect. Uber 10 min. Bring towels.", address: "2201 Barton Springs Rd, Austin, TX 78746" },
+    { name: "Rainey Street", note: "Houses-turned-bars. Sunday dinner at Emmer & Rye is right there. Explore after.", address: "Rainey St, Austin, TX 78701" },
+    { name: "Red River Cultural District", note: "Mohawk, Swan Dive, Hotel Vegas. Free live music nightly." },
+    { name: "East Austin", note: "Way more developed now. Kemuri is in the heart of it -- explore after Saturday dinner." },
+    { name: "Hotel San Jose", note: "South By San Jose is the perfect excuse to revisit. Vintage courtyard hotel.", address: "1316 S Congress Ave, Austin, TX 78704" },
+  ],
+  badge: {
+    name: "Innovation Badge",
+    covers: "All Innovation Conference sessions + all comedy shows",
+    doesNot: "Music showcases (need separate wristband)",
+    wristbandVerdict: "Don't buy it. Free music options are plentiful: South By San Jose (24 acts), Congress Ave Block Party, Lone Star Roadhouse, Red River District, KUTX @ Rivian. Only compelling wristband case: Alanis Morissette + DJ set from St. Vincent on Saturday -- but Saturday evening is booked (comedy + Kemuri).",
+  },
+  logistics: {
+    uber: "Uber/Lyft surge pricing is rough during SXSW. Walk when possible. Venues requiring Uber: Kemuri (East Austin, ~10 min), Hotel San Jose (S Congress, 5 min Uber or 20 min walk).",
+    dst: "Clocks sprang forward Sunday, March 8 -- already on CDT when we arrive. Sunrise ~7:35 AM, Sunset ~7:40 PM. Long evenings.",
+    houston: "I-10 East, ~165 miles, ~2.5 hours. Leave by 1pm to arrive ~3:30 PM. Gas up before leaving Austin. I-35 construction is ongoing -- use Mopac/183 to avoid it getting out of town. Buc-ee's in Luling (~50 min east on I-10) is a great pit stop. Earlier option: skip Ian Beacraft 11:30 session, on the road by noon.",
+  },
+  keyLinks: [
+    { name: "SXSW Schedule", url: "https://schedule.sxsw.com/" },
+    { name: "Innovation Badge Guide", url: "https://sxsw.com/badges/2026-sxsw-innovation-conference-attendee-guide/" },
+    { name: "Comedy Festival", url: "https://sxsw.com/festivals/comedy/" },
+    { name: "Flatstock Floor Map", url: "https://sxsw2026-flatstock.expofp.com" },
+    { name: "South By San Jose", url: "https://www.bunkhousehotels.com/hotel-san-jose/south-by-san-jose" },
+    { name: "Unofficial Events (RSVPATX)", url: "https://rsvpatx.com" },
+    { name: "SXSW GO App", url: "https://sxsw.com/mobile/" },
+  ],
+  tips: [
+    "SXSW GO app for real-time schedule updates",
+    "Arrive 15 min early for reserved sessions -- they release unclaimed seats",
+    "Badge on at all times",
+    "Comfortable shoes -- 15,000+ steps/day",
+    "Portable charger",
+    "Sunscreen -- 83-85\u00B0F and lots of outdoor walking between venues",
+    "Stay hydrated -- Austin in March is deceptively dry. Carry a water bottle.",
+    "Pollen alert -- cedar and oak are brutal in March. Pack allergy meds if sensitive.",
+    "Almost everything is walkable from the Fairmont (5-7 min to most venues)",
+  ],
+};
+
+// ─── Reference View ───────────────────────────────────────────────────────
+
+function renderReference() {
+  const container = document.getElementById("ref-content");
+  let html = '';
+
+  html += '<div class="ref-nav">';
+  const pills = [
+    { id: "ref-dinners", label: "Dinner" },
+    { id: "ref-hotel", label: "Hotel" },
+    { id: "ref-venues", label: "Venues" },
+    { id: "ref-food", label: "Food" },
+    { id: "ref-tips", label: "Tips" },
+    { id: "ref-sanjose", label: "San Jose" },
+    { id: "ref-comedy", label: "Comedy" },
+    { id: "ref-spots", label: "Spots" },
+  ];
+  pills.forEach(p => {
+    html += '<a href="#" class="ref-pill" data-target="' + p.id + '">' + p.label + '</a>';
+  });
+  html += '</div>';
+
+  html += '<div class="ref-group-label">Quick Reference</div>';
+
+  html += '<details class="ref-section" id="ref-dinners" open>';
+  html += '<summary class="ref-title">Dinner Reservations</summary>';
+  html += '<div class="ref-body">';
+  REFERENCE.restaurants.forEach(r => {
+    html += '<div class="ref-restaurant">';
+    html += '<strong>' + r.name + '</strong> -- ' + r.date + ' at ' + r.time;
+    if (r.cuisine) html += '<div class="ref-cuisine">' + r.cuisine + '</div>';
+    html += '<div>' + r.address + '</div>';
+    const btns = [];
+    btns.push('<a href="' + mapUrl(r.address) + '" class="card-btn">Directions</a>');
+    if (r.phone) btns.push('<a href="tel:' + r.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">' + r.phone + '</a>');
+    if (r.website) btns.push('<a href="' + r.website + '" class="card-btn card-btn-alt">Website</a>');
+    html += '<div class="card-btns">' + btns.join("") + '</div>';
+    html += '</div>';
+  });
+  html += '</div></details>';
+
+  html += '<details class="ref-section" id="ref-hotel">';
+  html += '<summary class="ref-title">Hotel</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item"><strong>' + REFERENCE.hotel.name + '</strong></div>';
+  html += '<div class="ref-item">' + REFERENCE.hotel.address + '</div>';
+  html += '<div class="ref-item">Check-in: ' + REFERENCE.hotel.checkIn + '</div>';
+  html += '<div class="ref-item">Check-out: ' + REFERENCE.hotel.checkOut + '</div>';
+  html += '<div class="ref-item">Rooftop: ' + REFERENCE.hotel.rooftop + '</div>';
+  html += '<div class="ref-item">Lobby: ' + REFERENCE.hotel.lobby + '</div>';
+  html += '<a href="' + mapUrl(REFERENCE.hotel.address) + '" class="card-btn" style="margin-top:8px;display:inline-block">Directions to Fairmont</a>';
+  html += '</div></details>';
+
+  html += '<details class="ref-section" id="ref-venues">';
+  html += '<summary class="ref-title">Venue Distances (from Fairmont)</summary>';
+  html += '<div class="ref-body"><table class="venue-table"><thead><tr><th>Venue</th><th>Walk</th></tr></thead><tbody>';
+  REFERENCE.venues.forEach(v => {
+    html += '<tr><td><a href="' + mapUrl(v.address + ", Austin, TX") + '">' + v.name + '</a></td><td>' + v.walk + '</td></tr>';
+  });
+  html += '</tbody></table></div></details>';
+
+  html += '<details class="ref-section" id="ref-food">';
+  html += '<summary class="ref-title">Coffee, Breakfast & Lunch</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-subhead">Coffee</div>';
+  REFERENCE.foodDrink.coffee.forEach(f => {
+    html += '<div class="ref-item"><strong>' + f.name + '</strong> -- ' + f.note;
+    if (f.address) html += ' <a href="' + mapUrl(f.address) + '" class="ref-link">Directions</a>';
+    html += '</div>';
+  });
+  html += '<div class="ref-subhead">Breakfast</div>';
+  REFERENCE.foodDrink.breakfast.forEach(f => {
+    html += '<div class="ref-item"><strong>' + f.name + '</strong> -- ' + f.note;
+    if (f.address) html += ' <a href="' + mapUrl(f.address) + '" class="ref-link">Directions</a>';
+    html += '</div>';
+  });
+  html += '<div class="ref-subhead">Lunch</div>';
+  REFERENCE.foodDrink.lunch.forEach(f => {
+    html += '<div class="ref-item"><strong>' + f.name + '</strong> -- ' + f.note;
+    if (f.address) html += ' <a href="' + mapUrl(f.address) + '" class="ref-link">Directions</a>';
+    html += '</div>';
+  });
+  html += '</div></details>';
+
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Badge & Music Wristband</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item"><strong>' + REFERENCE.badge.name + '</strong></div>';
+  html += '<div class="ref-item">Covers: ' + REFERENCE.badge.covers + '</div>';
+  html += '<div class="ref-item">Does NOT cover: ' + REFERENCE.badge.doesNot + '</div>';
+  html += '<div class="ref-item"><strong>Music wristband verdict:</strong> ' + REFERENCE.badge.wristbandVerdict + '</div>';
+  html += '</div></details>';
+
+  html += '<details class="ref-section" id="ref-tips">';
+  html += '<summary class="ref-title">Tips</summary>';
+  html += '<div class="ref-body"><ul>';
+  REFERENCE.tips.forEach(t => { html += '<li>' + t + '</li>'; });
+  html += '</ul></div></details>';
+
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Key Links</summary>';
+  html += '<div class="ref-body">';
+  REFERENCE.keyLinks.forEach(l => {
+    html += '<div class="ref-item"><a href="' + l.url + '" target="_blank" class="ref-link">' + l.name + '</a></div>';
+  });
+  html += '</div></details>';
+
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Logistics</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-subhead">Getting Around</div>';
+  html += '<div class="ref-item">' + REFERENCE.logistics.uber + '</div>';
+  html += '<div class="ref-subhead">Daylight Saving Time</div>';
+  html += '<div class="ref-item">' + REFERENCE.logistics.dst + '</div>';
+  html += '<div class="ref-subhead">Houston Drive (Monday)</div>';
+  html += '<div class="ref-item">' + REFERENCE.logistics.houston + '</div>';
+  html += '</div></details>';
+
+  html += '<div class="ref-group-label">Things to Do</div>';
+
+  html += '<details class="ref-section" id="ref-sanjose">';
+  html += '<summary class="ref-title">' + REFERENCE.sanJose.title + '</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.sanJose.detail + '</div>';
+  if (REFERENCE.sanJose.description) html += '<div class="ref-item">' + REFERENCE.sanJose.description + '</div>';
+  html += '<div class="ref-subhead">Acts to Watch</div>';
+  REFERENCE.sanJose.highlights.forEach(h => {
+    html += '<div class="ref-item"><strong>' + h.name + '</strong> -- ' + h.note + '</div>';
+  });
+  html += '<details class="ref-nested"><summary class="ref-nested-summary">Full Lineup (24 acts)</summary>';
+  html += '<div class="ref-item ref-small">' + REFERENCE.sanJose.lineup + '</div>';
+  html += '</details>';
+  html += '<div class="ref-subhead">Best Times to Go</div><ul>';
+  REFERENCE.sanJose.bestTimes.forEach(t => { html += '<li>' + t + '</li>'; });
+  html += '</ul>';
+  html += '<div class="ref-item">' + REFERENCE.sanJose.note + '</div>';
+  if (REFERENCE.sanJose.address) {
+    html += '<a href="' + mapUrl(REFERENCE.sanJose.address) + '" class="card-btn" style="margin-top:8px;display:inline-block">Directions</a>';
+  }
+  html += '</div></details>';
+
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">' + REFERENCE.flatstock.title + '</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.flatstock.detail + '</div>';
+  if (REFERENCE.flatstock.description) html += '<div class="ref-item">' + REFERENCE.flatstock.description + '</div>';
+  if (REFERENCE.flatstock.floorMap) html += '<div class="ref-item"><a href="' + REFERENCE.flatstock.floorMap + '" target="_blank" class="ref-link">Interactive Floor Map</a></div>';
+  html += '<div class="ref-subhead">Best Times to Go</div><ul>';
+  REFERENCE.flatstock.bestTimes.forEach(t => { html += '<li>' + t + '</li>'; });
+  html += '</ul>';
+  if (REFERENCE.flatstock.address) {
+    html += '<a href="' + mapUrl(REFERENCE.flatstock.address) + '" class="card-btn" style="margin-top:8px;display:inline-block">Directions</a>';
+  }
+  html += '</div></details>';
+
+  html += '<details class="ref-section" id="ref-comedy">';
+  html += '<summary class="ref-title">' + REFERENCE.comedy.title + '</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.comedy.note + '</div>';
+  REFERENCE.comedy.shows.forEach(s => {
+    const statusClass = s.status === "Our pick" ? "ref-pick" : "ref-skip";
+    html += '<div class="ref-item"><strong>' + s.time + '</strong> -- ' + s.name;
+    html += ' <span class="' + statusClass + '">' + s.status + '</span>';
+    html += '<br>' + s.venue + ' (' + s.walk + '). ' + s.note + '</div>';
+  });
+  html += '<div class="ref-item ref-small">' + REFERENCE.comedy.alsoInTown + '</div>';
+  html += '</div></details>';
+
+  html += '<details class="ref-section" id="ref-spots">';
+  html += '<summary class="ref-title">Austin Spots to Hit</summary>';
+  html += '<div class="ref-body">';
+  REFERENCE.austinSpots.forEach(s => {
+    html += '<div class="ref-item"><strong>' + s.name + '</strong> -- ' + s.note;
+    if (s.address) html += ' <a href="' + mapUrl(s.address) + '" class="ref-link">Directions</a>';
+    html += '</div>';
+  });
+  html += '</div></details>';
+
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Free Events</summary>';
+  html += '<div class="ref-body"><ul>';
+  REFERENCE.freeEvents.forEach(e => { html += '<li>' + e + '</li>'; });
+  html += '</ul></div></details>';
+
+  container.innerHTML = html;
+}
+
 // ─── Router ────────────────────────────────────────────────────────────────
 
 function route() {
@@ -608,6 +930,7 @@ function route() {
   if (hash === "#now") updateNowView();
   if (hash === "#schedule" && !document.querySelector(".day-content")) renderDay(getToday());
   if (hash === "#map") initMap(getToday());
+  if (hash === "#ref" && !document.getElementById("ref-content").hasChildNodes()) renderReference();
 }
 
 // ─── Now View ──────────────────────────────────────────────────────────────
