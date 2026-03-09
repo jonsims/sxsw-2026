@@ -881,6 +881,22 @@ function renderDay(idx) {
     if (ev.alts && ev.alts.length) {
       html += '<div class="alts-section">';
       html += '<div class="alts-header">Alternatives (' + ev.alts.length + ')</div>';
+
+      // Show original as a selectable option when a swap is active
+      if (hasSwap) {
+        const origVenueKey = venueKeyFromEvent(ev);
+        const origFeas = { level: "green", arrivalOk: true, arrivalNote: "", departureOk: true, departureNote: "" };
+        html += '<div class="alt-card alt-original" data-day="' + idx + '" data-ev="' + evIdx + '" data-alt="-1">';
+        html += '<div class="alt-header">';
+        html += feasibilityDot("green");
+        html += '<span class="alt-name">' + ev.name + '</span>';
+        html += '<span class="alt-tier alt-tier-orig">Original</span>';
+        html += '</div>';
+        if (ev.venue) html += '<div class="alt-venue">' + ev.venue + '</div>';
+        html += '<button class="swap-btn swap-restore" data-action="undo">Restore original</button>';
+        html += '</div>';
+      }
+
       ev.alts.forEach((altStr, altIdx) => {
         const alt = parseAlt(altStr);
         const feas = checkSwapFeasibility(day.events, evIdx, alt);
