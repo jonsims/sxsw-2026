@@ -711,14 +711,33 @@ const REFERENCE = {
     dst: "Clocks sprang forward Sunday, March 8 -- already on CDT when we arrive. Sunrise ~7:35 AM, Sunset ~7:40 PM. Long evenings.",
     houston: "I-10 East, ~165 miles, ~2.5 hours. Leave by 1pm to arrive ~3:30 PM. Gas up before leaving Austin. I-35 construction is ongoing -- use Mopac/183 to avoid it getting out of town. Buc-ee's in Luling (~50 min east on I-10) is a great pit stop. Earlier option: skip Ian Beacraft 11:30 session, on the road by noon.",
   },
+  sxswVenues: {
+    note: "No Convention Center in 2026 -- it's under redevelopment. SXSW is using a distributed pop-up village across downtown hotels.",
+    badgePickup: [
+      { location: "Fairmont Austin", detail: "Manchester Foyer & Indigo", dates: "Mar 8-16", note: "Your hotel! Sponsor support" },
+      { location: "JW Marriott", detail: "Griffin Hall, Level 2", dates: "Mar 12-18", note: "Music wristbands, Platinum lane, press/speaker" },
+      { location: "Palmer Events Center", detail: "900 Barton Springs Rd", dates: "Mar 8-11", note: "Early pickup only" },
+    ],
+    badgeTips: "Bring government-issued ID. Upload your photo at id.sxsw.com beforehand to speed things up. Hours generally 8am-10pm during festival days.",
+    reservations: "Innovation Badge: 2 reservations/day. Reserve up to 3 weeks in advance. Walk-up capacity still available.",
+  },
+  weather: {
+    forecast: "83-85\u00B0F (28-29\u00B0C), mostly sunny. UV index high.",
+    sunrise: "~7:35 AM",
+    sunset: "~7:40 PM",
+    tips: "Long warm evenings. Sunscreen and water essential. Pollen (cedar/oak) can be brutal -- bring allergy meds if sensitive.",
+  },
   keyLinks: [
     { name: "SXSW Schedule", url: "https://schedule.sxsw.com/" },
+    { name: "SXSW GO App", url: "https://sxsw.com/mobile/" },
+    { name: "Interactive Maps", url: "https://maps.sxsw.com/" },
+    { name: "Attendee Guide", url: "https://sxsw.com/attendee-guide/" },
     { name: "Innovation Badge Guide", url: "https://sxsw.com/badges/2026-sxsw-innovation-conference-attendee-guide/" },
+    { name: "Line / Walkup Guide", url: "https://sxsw.com/line-guide/" },
     { name: "Comedy Festival", url: "https://sxsw.com/festivals/comedy/" },
     { name: "Flatstock Floor Map", url: "https://sxsw2026-flatstock.expofp.com" },
     { name: "South By San Jose", url: "https://www.bunkhousehotels.com/hotel-san-jose/south-by-san-jose" },
     { name: "Unofficial Events (RSVPATX)", url: "https://rsvpatx.com" },
-    { name: "SXSW GO App", url: "https://sxsw.com/mobile/" },
   ],
   tips: [
     "Arrive 15 min early for reserved sessions -- they release unclaimed seats",
@@ -764,6 +783,20 @@ function renderReference() {
   });
   html += '</tbody></table></div></details>';
 
+  // SXSW Venues & Badge Pickup
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">SXSW Venues & Badge Pickup</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.sxswVenues.note + '</div>';
+  html += '<div class="ref-subhead">Badge Pickup</div>';
+  REFERENCE.sxswVenues.badgePickup.forEach(p => {
+    html += '<div class="ref-item"><strong>' + p.location + '</strong> -- ' + p.detail + '<br>' + p.dates + '. ' + p.note + '</div>';
+  });
+  html += '<div class="ref-item ref-small">' + REFERENCE.sxswVenues.badgeTips + '</div>';
+  html += '<div class="ref-subhead">Reservations</div>';
+  html += '<div class="ref-item">' + REFERENCE.sxswVenues.reservations + '</div>';
+  html += '</div></details>';
+
   // Badge
   html += '<details class="ref-section">';
   html += '<summary class="ref-title">Badge</summary>';
@@ -771,6 +804,15 @@ function renderReference() {
   html += '<div class="ref-item"><strong>' + REFERENCE.badge.name + '</strong> -- ' + REFERENCE.badge.covers + '</div>';
   html += '<div class="ref-item">Does NOT cover: ' + REFERENCE.badge.doesNot + '</div>';
   html += '<div class="ref-item ref-small">' + REFERENCE.badge.wristbandVerdict + '</div>';
+  html += '</div></details>';
+
+  // Weather
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Weather</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item"><strong>' + REFERENCE.weather.forecast + '</strong></div>';
+  html += '<div class="ref-item">Sunrise: ' + REFERENCE.weather.sunrise + ' · Sunset: ' + REFERENCE.weather.sunset + '</div>';
+  html += '<div class="ref-item">' + REFERENCE.weather.tips + '</div>';
   html += '</div></details>';
 
   // Tips
