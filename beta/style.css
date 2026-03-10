@@ -1214,6 +1214,32 @@ html.dark .leaflet-popup-tip {
   }
 }
 
+/* ─── iPad portrait (768px+) ─────────────────────────────── */
+@media (min-width: 768px) {
+  .view { max-width: 720px; }
+  .header-logo { height: 44px; }
+  .day-tab { min-width: 72px; padding: 12px 8px; font-size: 15px; }
+  .card-name { font-size: 20px; }
+  .sc-name { font-size: 17px; }
+  .event-card { padding: 20px; }
+  .sched-card summary { padding: 16px 20px; padding-right: 48px; }
+  .sc-expand { padding: 0 20px 20px; }
+  .alts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .alts-header { grid-column: 1 / -1; }
+  .alt-card.alt-original { grid-column: 1 / -1; }
+}
+
+/* ─── iPad landscape / Desktop (1024px+) ─────────────────── */
+@media (min-width: 1024px) {
+  .view { max-width: 840px; }
+  #map-container { height: 60vh; max-height: 700px; }
+  #map-legend { max-height: 60vh; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
