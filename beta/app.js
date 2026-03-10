@@ -1213,7 +1213,7 @@ function renderDay(idx) {
   const now = new Date();
   const todayStr = now.toLocaleDateString("en-CA");
 
-  document.querySelectorAll(".day-tab").forEach((t, i) => {
+  document.querySelectorAll(".day-tab:not(.map-day-tab)").forEach((t, i) => {
     t.classList.toggle("active", i === idx);
     t.classList.toggle("today", DAYS[i].date === todayStr);
     t.setAttribute("aria-selected", i === idx ? "true" : "false");
