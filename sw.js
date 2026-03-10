@@ -1,4 +1,4 @@
-const CACHE = 'sxsw-v15';
+const CACHE = 'sxsw-v16';
 const ASSETS = ['./', 'index.html', 'style.css', 'app.js', 'manifest.json', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {

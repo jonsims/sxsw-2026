@@ -72,7 +72,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 
 .header-neon {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: 2px;
   background: linear-gradient(135deg, #a8e6ff, #c4b5fd, #fbbf24, #86efac);
@@ -80,11 +80,6 @@ a { color: var(--accent); text-decoration: none; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 8px rgba(168, 230, 255, 0.4)) drop-shadow(0 0 20px rgba(196, 181, 253, 0.2));
-}
-
-.neon-at {
-  font-size: 24px;
-  margin: 0 -1px;
 }
 
 
@@ -1245,7 +1240,7 @@ html.dark .leaflet-popup-tip {
 /* ─── iPad portrait (768px+) ─────────────────────────────── */
 @media (min-width: 768px) {
   .view { max-width: 720px; }
-  .header-neon { font-size: 34px; }
+  .header-neon { font-size: 28px; }
   .day-tab { min-width: 72px; padding: 12px 8px; font-size: 15px; }
   .card-name { font-size: 20px; }
   .sc-name { font-size: 17px; }
