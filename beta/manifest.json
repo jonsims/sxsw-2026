@@ -1,13 +1,13 @@
 {
-  "name": "Sims@SX26 Beta",
-  "short_name": "SX26 Beta",
+  "name": "Sims@SX26",
+  "short_name": "Sims@SX26",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#f5f5f7",
   "theme_color": "#1a1a2e",
   "icons": [
-    { "src": "../icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "../icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }

@@ -1,4 +1,5 @@
-/* SXSW 2026 Trip Guide — style.css */
+/* SXSW 2026 Beta — style.css */
+/* Extends main app styles with schedule-change evaluation UI */
 
 /* ─── Variables ──────────────────────────────────────────────────────────── */
 
@@ -18,6 +19,9 @@
   --accent: #2563EB;
   --shadow: 0 1px 3px rgba(0,0,0,0.08);
   --radius: 12px;
+  --green: #16A34A;
+  --amber: #d97706;
+  --red: #dc2626;
 }
 
 html.dark {
@@ -25,8 +29,8 @@ html.dark {
   --surface: #25253e;
   --text: #e8e8f0;
   --text-secondary: #a0a0b8;
-  --text-tertiary: #9090a8;
-  --border: #35355a;
+  --text-tertiary: #a8a8c0;
+  --border: #40406a;
   --shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -64,6 +68,7 @@ a { color: var(--accent); text-decoration: none; }
   padding-top: calc(10px + env(safe-area-inset-top));
   background: #1a1a2e;
   border-bottom: none;
+  gap: 8px;
 }
 
 .header-logo {
@@ -73,6 +78,7 @@ a { color: var(--accent); text-decoration: none; }
   border-radius: 4px;
   filter: drop-shadow(0 0 6px rgba(255, 200, 50, 0.25));
 }
+
 
 #darkToggle {
   position: absolute;
@@ -97,6 +103,21 @@ a { color: var(--accent); text-decoration: none; }
   transform: scale(0.92);
 }
 
+.app-header::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(to bottom, rgba(26, 26, 46, 0.12), transparent);
+  pointer-events: none;
+}
+
+html.dark .app-header::after {
+  display: none;
+}
+
 /* ─── Views ──────────────────────────────────────────────────────────────── */
 
 .view {
@@ -107,6 +128,9 @@ a { color: var(--accent); text-decoration: none; }
 }
 
 .view.active { display: block; }
+
+/* Ensure Leaflet elements don't bleed through hidden views */
+.view:not(.active) { display: none !important; }
 
 /* ─── Tab Bar ────────────────────────────────────────────────────────────── */
 
@@ -138,13 +162,8 @@ a { color: var(--accent); text-decoration: none; }
   transition: transform 0.1s ease;
 }
 
-#tab-bar a:active {
-  transform: scale(0.92);
-}
-
-#tab-bar a.active {
-  color: var(--accent);
-}
+#tab-bar a:active { transform: scale(0.92); }
+#tab-bar a.active { color: var(--accent); }
 
 #tab-bar a svg {
   width: 24px;
@@ -156,9 +175,7 @@ a { color: var(--accent); text-decoration: none; }
   stroke-linejoin: round;
 }
 
-html.dark #tab-bar a svg {
-  stroke-width: 2.2;
-}
+html.dark #tab-bar a svg { stroke-width: 2.2; }
 
 /* ─── Day Summary (Now View) ─────────────────────────────────────────────── */
 
@@ -222,9 +239,7 @@ html.dark #tab-bar a svg {
   transition: width 1s linear;
 }
 
-.progress-fill.progress-urgent {
-  background: #d97706;
-}
+.progress-fill.progress-urgent { background: #d97706; }
 
 .progress-label {
   font-size: 14px;
@@ -245,21 +260,9 @@ html.dark #tab-bar a svg {
   margin-bottom: 4px;
 }
 
-.weather-temp {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.weather-desc {
-  font-size: 15px;
-  color: var(--text-secondary);
-}
-
-.weather-loc {
-  font-size: 13px;
-  color: var(--text-tertiary);
-  margin-left: auto;
-}
+.weather-temp { font-size: 28px; font-weight: 700; }
+.weather-desc { font-size: 15px; color: var(--text-secondary); }
+.weather-loc { font-size: 13px; color: var(--text-tertiary); margin-left: auto; }
 
 .weather-range {
   font-size: 13px;
@@ -278,10 +281,7 @@ html.dark #tab-bar a svg {
   margin-bottom: 12px;
   box-shadow: var(--shadow);
   border-left: 6px solid var(--logistics);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
-
-/* Cards are not directly interactive — no :active feedback */
 
 .event-card.cat-session { border-left-color: var(--session); }
 .event-card.cat-dining { border-left-color: var(--dining); }
@@ -306,6 +306,13 @@ html.dark #tab-bar a svg {
 .event-card.cat-free .card-label { color: #0EA5E9; }
 .event-card.cat-logistics .card-label { color: var(--logistics); }
 
+html.dark .event-card.cat-session .card-label { color: #60a5fa; }
+html.dark .event-card.cat-dining .card-label { color: #fb923c; }
+html.dark .event-card.cat-comedy .card-label { color: #c084fc; }
+html.dark .event-card.cat-run .card-label { color: #4ade80; }
+html.dark .event-card.cat-free .card-label { color: #38bdf8; }
+html.dark .event-card.cat-logistics .card-label { color: #9ca3af; }
+
 .card-reserved {
   display: inline-block;
   font-size: 11px;
@@ -319,34 +326,12 @@ html.dark #tab-bar a svg {
   margin-bottom: 6px;
 }
 
-html.dark .card-reserved {
-  background: rgba(22, 163, 74, 0.15);
-}
+html.dark .card-reserved { background: rgba(22, 163, 74, 0.15); }
 
-.card-time {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-secondary);
-}
-
-.card-name {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 2px 0 6px;
-  line-height: 1.3;
-}
-
-.card-venue {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.card-walk {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  margin-bottom: 4px;
-}
+.card-time { font-size: 15px; font-weight: 700; color: var(--text-secondary); }
+.card-name { font-size: 18px; font-weight: 700; margin: 2px 0 6px; line-height: 1.3; }
+.card-venue { font-size: 14px; color: var(--text-secondary); }
+.card-walk { font-size: 14px; font-weight: 500; color: var(--text-tertiary); margin-bottom: 4px; }
 
 .card-detail {
   font-size: 14px;
@@ -436,26 +421,10 @@ html.dark .day-tab.today:not(.active) {
   background: rgba(37, 99, 235, 0.15);
 }
 
-.day-header {
-  margin-bottom: 16px;
-}
-
-.day-title {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.day-subtitle {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.day-weather {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-top: 2px;
-  font-weight: 500;
-}
+.day-header { margin-bottom: 16px; }
+.day-title { font-size: 20px; font-weight: 700; }
+.day-subtitle { font-size: 14px; color: var(--text-secondary); }
+.day-weather { font-size: 14px; color: var(--text-secondary); margin-top: 2px; font-weight: 500; }
 
 /* Schedule cards (expandable) */
 
@@ -475,14 +444,12 @@ html.dark .day-tab.today:not(.active) {
 .sched-card.cat-free { border-left-color: var(--free); }
 .sched-card.cat-logistics { border-left-color: var(--logistics); }
 
-/* Past events muted */
-.sched-card.past-event {
-  opacity: 0.55;
-}
+.sched-card:last-child { margin-bottom: 24px; }
+.sched-card.past-event { opacity: 0.55; }
+.sched-card.current-event { box-shadow: 0 0 0 2px var(--accent), var(--shadow); }
 
-/* Current event highlighted */
-.sched-card.current-event {
-  box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+.sched-card.swapped-card {
+  box-shadow: 0 0 0 2px var(--amber), var(--shadow);
 }
 
 .sched-card summary {
@@ -491,14 +458,11 @@ html.dark .day-tab.today:not(.active) {
   list-style: none;
   -webkit-tap-highlight-color: transparent;
   min-height: 44px;
-}
-
-.sched-card summary::-webkit-details-marker { display: none; }
-
-.sched-card summary {
   position: relative;
   padding-right: 40px;
 }
+
+.sched-card summary::-webkit-details-marker { display: none; }
 
 .sched-card summary::after {
   content: "";
@@ -528,9 +492,10 @@ html.dark .day-tab.today:not(.active) {
 
 .sc-time {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--text-secondary);
+  letter-spacing: 0.2px;
 }
 
 .sc-reserved {
@@ -547,9 +512,7 @@ html.dark .day-tab.today:not(.active) {
   margin-left: 4px;
 }
 
-html.dark .sc-reserved {
-  background: rgba(22, 163, 74, 0.15);
-}
+html.dark .sc-reserved { background: rgba(22, 163, 74, 0.15); }
 
 .sc-name {
   display: block;
@@ -559,11 +522,22 @@ html.dark .sc-reserved {
   line-height: 1.3;
 }
 
+.sc-original {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.sc-swapped {
+  color: var(--amber);
+}
+
 .sc-venue {
   display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-tertiary);
 }
 
 .sc-walk {
@@ -583,6 +557,7 @@ html.dark .sc-reserved {
   margin-left: 8px;
   vertical-align: middle;
 }
+
 .sc-cat-badge.cat-session { background: rgba(37, 99, 235, 0.1); color: var(--session); }
 .sc-cat-badge.cat-dining { background: rgba(234, 88, 12, 0.1); color: var(--dining); }
 .sc-cat-badge.cat-comedy { background: rgba(147, 51, 234, 0.1); color: var(--comedy); }
@@ -597,9 +572,7 @@ html.dark .sc-cat-badge.cat-run { background: rgba(22, 163, 74, 0.2); color: #4a
 html.dark .sc-cat-badge.cat-free { background: rgba(14, 165, 233, 0.2); color: #38bdf8; }
 html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); color: #9ca3af; }
 
-.sc-expand {
-  padding: 0 16px 16px;
-}
+.sc-expand { padding: 0 16px 16px; }
 
 .sc-detail {
   font-size: 14px;
@@ -608,49 +581,238 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
   margin-bottom: 8px;
 }
 
-.sc-alts {
-  margin-top: 12px;
-  padding: 10px;
-  background: var(--bg);
-  border-radius: 8px;
-  font-size: 13px;
+/* ─── Alternatives Section (NEW) ─────────────────────────────────────────── */
+
+.alts-section {
+  margin-top: 20px;
+  border-top: 2px solid var(--border);
+  padding-top: 16px;
 }
 
-.sc-alts strong {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 12px;
+.alts-header {
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+
+.alt-card {
+  background: #ededf0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #dcdce0;
+  box-shadow: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+html.dark .alt-card {
+  background: #1e1e32;
+  border-color: #363658;
+}
+
+.alt-card.alt-active {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 1px var(--amber);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+html.dark .alt-card.alt-active {
+  background: rgba(217, 119, 6, 0.1);
+}
+
+.alt-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.feas-dot {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 8px;
+  flex-shrink: 0;
   letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.alt-name {
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text-secondary);
+  flex: 1;
+  line-height: 1.3;
 }
 
-.sc-alts ul {
-  list-style: none;
-  padding: 0;
+.alt-tier {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  background: var(--surface);
+  padding: 1px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
 }
 
-.sc-alts li {
-  padding: 6px 0;
+.alt-venue {
+  font-size: 13px;
   color: var(--text-secondary);
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
 }
 
-.sc-alts li:last-child {
-  border-bottom: none;
+.alt-notes {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  margin-bottom: 4px;
 }
 
-.sc-alts li::before {
-  content: "- ";
+.alt-feas {
+  margin-top: 6px;
+}
+
+.feas-line {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 2px 0;
+  line-height: 1.4;
+}
+
+.feas-line.feas-bad {
+  color: var(--red);
+  font-weight: 500;
+}
+
+.feas-arrow {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
   color: var(--text-tertiary);
 }
 
-.sc-alts summary {
-  cursor: pointer;
-  padding: 4px 0;
+.feas-line.feas-bad .feas-arrow {
+  color: var(--red);
 }
 
+/* Swap button */
+
+.swap-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 36px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.swap-btn:active {
+  transform: scale(0.95);
+}
+
+.swap-btn:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.swap-btn.swap-undo,
+.swap-btn.swap-restore {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.swap-btn.swap-undo:hover,
+.swap-btn.swap-restore:hover {
+  background: rgba(217, 119, 6, 0.08);
+}
+
+.swap-btn.swap-restore {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.swap-btn.swap-restore:hover {
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.alt-card.alt-original {
+  border-color: var(--green);
+  background: rgba(22, 163, 74, 0.04);
+}
+
+html.dark .alt-card.alt-original {
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.alt-tier-orig {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--green) !important;
+}
+
+/* ─── Options ────────────────────────────────────────────────────────────── */
+
+.card-options { margin-top: 8px; }
+
+.option-item {
+  padding: 6px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.option-item:last-child { border-bottom: none; }
+
 /* ─── Reference View ─────────────────────────────────────────────────────── */
+
+.ref-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0 12px;
+  margin-bottom: 4px;
+}
+
+.ref-pill {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ref-pill:active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.ref-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  padding: 20px 0 6px;
+}
 
 .ref-section {
   background: var(--surface);
@@ -722,9 +884,7 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
   border-bottom: 1px solid var(--border);
 }
 
-.venue-table td:first-child {
-  padding-right: 12px;
-}
+.venue-table td:first-child { padding-right: 12px; }
 
 .venue-table td:last-child {
   text-align: right;
@@ -787,9 +947,7 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
   margin: -4px -2px;
 }
 
-.ref-link:active {
-  opacity: 0.7;
-}
+.ref-link:active { opacity: 0.7; }
 
 .ref-pick {
   display: inline-block;
@@ -813,52 +971,7 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
   margin-left: 4px;
 }
 
-/* Reference nav pills */
-.ref-nav {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 4px 0 12px;
-  margin-bottom: 4px;
-}
-
-.ref-pill {
-  flex-shrink: 0;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: var(--surface);
-  color: var(--text-secondary);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.ref-pill:active {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-
-/* Group labels for Reference tab sections */
-.ref-group-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-tertiary);
-  padding: 20px 0 6px;
-}
-
-/* Nested details (e.g. San Jose full lineup) */
-.ref-nested {
-  margin-top: 8px;
-}
+.ref-nested { margin-top: 8px; }
 
 .ref-nested-summary {
   font-size: 13px;
@@ -868,25 +981,290 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
   padding: 4px 0;
 }
 
-/* Option items for explore/lunch events */
-.card-options {
-  margin-top: 8px;
-}
-
-.option-item {
-  padding: 6px 0;
-  font-size: 14px;
-  border-bottom: 1px solid var(--border);
-}
-
-.option-item:last-child {
-  border-bottom: none;
-}
-
-/* ─── Reduced Motion ────────────────────────────────────────────────────── */
+/* ─── Scrollbar & Motion ─────────────────────────────────────────────────── */
 
 .day-tabs, .ref-nav { scrollbar-width: none; }
 .day-tabs::-webkit-scrollbar, .ref-nav::-webkit-scrollbar { display: none; }
+
+/* ─── Walk Card (Now View) ───────────────────────────────────────────────── */
+
+.walk-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin: 12px 0;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green);
+}
+
+.walk-card.walk-tight {
+  border-left-color: var(--amber);
+}
+
+.walk-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.walk-icon {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.walk-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.walk-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.walk-from {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.walk-timing {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--green);
+}
+
+.walk-timing.walk-tight {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--amber);
+}
+
+.walk-leave {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.walk-leave-now {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+.walk-directions-btn {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.walk-directions-btn:active {
+  opacity: 0.8;
+}
+
+/* ─── Map View ───────────────────────────────────────────────────────────── */
+
+/* Phone: map-view fills viewport, map + legend share the space */
+#map-view.active {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 57px - 60px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.map-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
+#map-container {
+  height: 35vh;
+  min-height: 180px;
+  max-height: 300px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  z-index: 0;
+}
+
+.map-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  flex-shrink: 0;
+}
+
+.map-divider-pill {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+}
+
+.map-day-tabs {
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.map-marker-icon {
+  background: none !important;
+  border: none !important;
+}
+
+.map-marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.map-popup {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.map-popup strong {
+  font-size: 13px;
+  color: #666;
+}
+html.dark .map-popup strong {
+  color: #a0a0b8;
+}
+
+#map-legend {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.map-legend-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.map-legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.map-legend-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.map-legend-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+  width: 65px;
+  flex-shrink: 0;
+}
+
+.map-legend-name {
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Leaflet popup overrides */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.15) !important;
+}
+
+html.dark .leaflet-popup-content-wrapper {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+html.dark .leaflet-popup-tip {
+  background: var(--surface) !important;
+}
+
+/* Landscape / tablet: taller map when space allows */
+@media (min-width: 700px) {
+  #map-container {
+    max-height: 350px;
+  }
+}
+
+/* ─── iPad portrait (768px+) ─────────────────────────────── */
+@media (min-width: 768px) {
+  .view { max-width: 720px; }
+  .header-logo { height: 44px; }
+  .day-tab { min-width: 72px; padding: 12px 8px; font-size: 15px; }
+  .card-name { font-size: 20px; }
+  .sc-name { font-size: 17px; }
+  .event-card { padding: 20px; }
+  .sched-card summary { padding: 16px 20px; padding-right: 48px; }
+  .sc-expand { padding: 0 20px 20px; }
+  .alts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .alts-header { grid-column: 1 / -1; }
+  .alt-card.alt-original { grid-column: 1 / -1; }
+
+  /* Map: side-by-side on tablet+ */
+  #map-view.active { max-width: 960px; }
+  .map-body { flex-direction: row; gap: 12px; }
+  #map-container { flex: 3; height: auto; min-height: 300px; max-height: none; }
+  #map-legend { flex: 2; }
+  .map-divider { display: none; }
+}
+
+/* ─── iPad landscape / Desktop (1024px+) ─────────────────── */
+@media (min-width: 1024px) {
+  .view { max-width: 840px; }
+  #map-view.active { max-width: 1100px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -894,4 +1272,3 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
     transition-duration: 0.01ms !important;
   }
 }
-

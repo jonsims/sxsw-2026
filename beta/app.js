@@ -12,7 +12,7 @@ const DAYS = [
     events: [
       { time: "7:00 AM", iso: "2026-03-12T07:00:00-05:00", end: "2026-03-12T08:00:00-05:00",
         name: "Run: Town Lake Boardwalk",
-        detail: "4-5 mile boardwalk loop. 51°F -- perfect. Out the back of the Fairmont, cross Cesar Chavez, on the trail in 2 min. Sunrise ~7:35 AM.",
+        detail: "4-5 mile boardwalk loop. 51°F -- perfect. Out the back of the Fairmont, cross Cesar Chavez, on the trail in 2 min. Sunrise ~7:35 AM. Route options: full loop ~10 mi, boardwalk (south side) ~4-5 mi, east out-and-back ~3 mi.",
         venue: "", walk: "", cat: "run", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-12T10:00:00-05:00", end: "2026-03-12T11:00:00-05:00",
         name: "Moonshots that Move the Needle",
@@ -41,7 +41,7 @@ const DAYS = [
           "PanelPicker & More: SXSW EDU 2027 (Tier 3, Westin, 8 min -- only if planning to submit)"
         ] },
       { time: "12:30 PM", iso: "2026-03-12T12:30:00-05:00", end: "2026-03-12T14:00:00-05:00",
-        name: "Lunch", detail: "Walk back to Fairmont (5 min from Hilton) or grab food nearby.",
+        name: "Lunch", detail: "Walk back to Fairmont (5 min from Hilton) or grab food nearby. Convention Center food options also close.",
         venue: "", walk: "", cat: "free", url: "", alts: [] },
       { time: "2:30 PM", iso: "2026-03-12T14:30:00-05:00", end: "2026-03-12T15:30:00-05:00",
         name: "Exploring the Future of Space & Japan's Deep-Tech",
@@ -69,11 +69,12 @@ const DAYS = [
         ] },
       { time: "5:00 PM", iso: "2026-03-12T17:00:00-05:00", end: "2026-03-12T19:00:00-05:00",
         name: "Dinner / Recharge",
-        detail: "Head back to hotel. Grab food nearby or at the Fairmont.",
-        venue: "Fairmont", walk: "", cat: "free", url: "", alts: [] },
+        detail: "Head back to hotel. Grab food nearby or at the Fairmont. Recharge before the opening party.",
+        venue: "Fairmont", walk: "",
+        cat: "free", url: "", alts: [] },
       { time: "7:00 PM", iso: "2026-03-12T19:00:00-05:00", end: "2026-03-12T22:00:00-05:00",
         name: "Innovation Opening Party",
-        detail: "Free with badge. Great for solo networking.",
+        detail: "Free with badge. Great for solo networking. After: Red River District bars (Mohawk, Swan Dive) are 5 min east, or head back to Fairmont.",
         venue: "Brazos Hall (204 E 4th St)", walk: "5 min from Fairmont",
         address: "204 E 4th St, Austin, TX 78701",
         cat: "logistics", url: "", alts: [] },
@@ -87,7 +88,7 @@ const DAYS = [
     events: [
       { time: "6:30 AM", iso: "2026-03-13T06:30:00-05:00", end: "2026-03-13T07:30:00-05:00",
         name: "Run: Town Lake",
-        detail: "Full loop (10 mi) or boardwalk (5 mi). 57°F, warming fast -- go early.",
+        detail: "Full loop (10 mi) or boardwalk (5 mi). 57°F, warming fast -- go early. Same trail access: out the back of Fairmont, cross Cesar Chavez, on trail in 2 min. Sunrise ~7:35 AM.",
         venue: "", walk: "", cat: "run", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-13T10:00:00-05:00", end: "2026-03-13T11:00:00-05:00",
         name: "Waveform: The MKBHD Podcast Live",
@@ -106,11 +107,11 @@ const DAYS = [
         url: "https://schedule.sxsw.com/2026/events/PP1149270", cat: "session", alts: [] },
       { time: "12:30 PM", iso: "2026-03-13T12:30:00-05:00", end: "2026-03-13T14:00:00-05:00",
         name: "Lunch together",
-        detail: "Christina arrives midday. Meet at Fairmont or grab food nearby.",
+        detail: "Christina arrives midday. Meet at Fairmont (5 min from JW Marriott) or grab food nearby. 2nd St District has good quick options.",
         venue: "", walk: "", cat: "free", url: "", alts: [] },
       { time: "2:30 PM", iso: "2026-03-13T14:30:00-05:00", end: "2026-03-13T15:30:00-05:00",
         name: "The Companies Building Space's Superhighway",
-        detail: "In-space robotics, debris cleanup. Pure moonshot.",
+        detail: "In-space robotics, debris cleanup. Pure moonshot. Christina option: Flatstock at Austin Marriott (7 min from Fairmont) -- free poster art, browse while Jon is in session, meet up at 3:30.",
         venue: "JW Marriott (Salon D)", walk: "5 min from Fairmont",
         address: "110 E 2nd St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1162261", cat: "session",
@@ -122,26 +123,27 @@ const DAYS = [
         ] },
       { time: "3:30 PM", iso: "2026-03-13T15:30:00-05:00", end: "2026-03-13T17:30:00-05:00",
         name: "Explore: South By San Jose + South Congress",
-        detail: "South By San Jose at Hotel San Jose -- free music, vintage vendors, great vibe.",
+        detail: "South By San Jose at Hotel San Jose -- free music from noon, vintage vendors, great vibe. 20 min walk south across Congress bridge (or 5 min Uber). Walk South Congress: shops, food trucks, Allen's Boots. Last chance before dinner -- head back by 5:30. La Condesa is at 400 W 2nd St.",
         venue: "Hotel San Jose (1316 S Congress)", walk: "20 min walk south / 5 min Uber",
         address: "1316 S Congress Ave, Austin, TX 78704",
         cat: "free", url: "", alts: [] },
       { time: "6:00 PM", iso: "2026-03-13T18:00:00-05:00", end: "2026-03-13T20:00:00-05:00",
         name: "Dinner: La Condesa",
-        detail: "Modern Mexican. (512) 499-0300",
+        detail: "Modern Mexican. 10 min walk from Fairmont, 20 min walk north from Hotel San Jose. (512) 499-0300",
         venue: "400 W 2nd St", walk: "10 min from Fairmont / 20 min from San Jose",
         address: "400 W 2nd St, Austin, TX 78701",
         phone: "(512) 499-0300", website: "https://lacondesa.com/",
         cat: "dining", url: "", alts: [] },
       { time: "8:00 PM", iso: "2026-03-13T20:00:00-05:00", end: "2026-03-13T23:00:00-05:00",
         name: "Evening Options",
-        detail: "Free live music, no badge needed.",
-        venue: "", walk: "", cat: "free", url: "",
+        detail: "Free live music, no badge needed:",
+        venue: "", walk: "",
+        cat: "free", url: "",
         options: [
-          { text: "Red River District", note: "Mohawk, Swan Dive, Hotel Vegas. 5 min east.", address: "Red River St, Austin, TX 78701" },
-          { text: "Congress Ave Block Party", note: "Free drinks/swag.", address: "Congress Ave, Austin, TX 78701" },
-          { text: "Lone Star Roadhouse", note: "Live bands + beer market. Free.", address: "" },
-          { text: "Fairmont rooftop", note: "Rules & Regs, 7th floor.", address: "101 Red River St, Austin, TX 78701" },
+          { text: "Red River District", note: "Mohawk, Swan Dive, Hotel Vegas. 5 min east from La Condesa.", address: "Red River St, Austin, TX 78701" },
+          { text: "Congress Ave Block Party", note: "Free drinks/swag. Walk north on Congress from dinner.", address: "Congress Ave, Austin, TX 78701" },
+          { text: "Lone Star Roadhouse", note: "East End Ballroom. Live bands + beer market. Free.", address: "" },
+          { text: "Fairmont rooftop", note: "Rules & Regs, 7th floor. Cocktails + skyline. If energy is low.", address: "101 Red River St, Austin, TX 78701" },
         ],
         alts: [] },
     ],
@@ -154,15 +156,15 @@ const DAYS = [
     events: [
       { time: "6:30 AM", iso: "2026-03-14T06:30:00-05:00", end: "2026-03-14T07:30:00-05:00",
         name: "Run: Town Lake Boardwalk",
-        detail: "4-5 mile boardwalk loop. 55°F. Hits 85°F later -- don't skip this.",
+        detail: "4-5 mile boardwalk loop. 55°F. Back by 7:30. Same trail: out back of Fairmont, cross Cesar Chavez, on trail in 2 min. Hits 85°F later -- don't skip this.",
         venue: "", walk: "", cat: "run", url: "", alts: [] },
       { time: "8:30 AM", iso: "2026-03-14T08:30:00-05:00", end: "2026-03-14T09:30:00-05:00",
         name: "Morning Coffee",
-        detail: "Good Things (Fairmont lobby) or Jo's Coffee on SoCo.",
+        detail: "Good Things (Fairmont lobby) or Jo's Coffee on SoCo (20 min walk / 5 min Uber). No rush.",
         venue: "", walk: "", cat: "free", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-14T10:00:00-05:00", end: "2026-03-14T11:00:00-05:00",
         name: "The New Lab Partner: AI & Scientific Discovery",
-        detail: "AI drug discovery, philosophical questions. Accessible for both of us.",
+        detail: "AI drug discovery, philosophical questions. Accessible and interesting for both of us. Or sleep in and skip to 11:30.",
         venue: "JW Marriott (Salon D)", walk: "5 min from Fairmont",
         address: "110 E 2nd St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1162244", cat: "session",
@@ -172,7 +174,7 @@ const DAYS = [
         ] },
       { time: "11:30 AM", iso: "2026-03-14T11:30:00-05:00", end: "2026-03-14T12:30:00-05:00",
         name: "10 Breakthrough Technologies of 2026",
-        detail: "MIT Tech Review annual list with Niall Firth. RESERVED. DON'T MISS.",
+        detail: "MIT Tech Review annual list with Niall Firth. RESERVED. DON'T MISS. Accessible greatest-hits format -- good for both of us. Only other option is SAAS Professionals Meet Up (skip).",
         venue: "Hilton (Salon HJK)", walk: "5 min from JW Marriott",
         address: "500 E 4th St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1148587", cat: "session", alts: [] },
@@ -184,12 +186,14 @@ const DAYS = [
           { text: "Flatstock", note: "Austin Marriott, 7 min. Free poster art. Last day Sun.", address: "304 E Cesar Chavez St, Austin, TX 78701" },
           { text: "South By San Jose", note: "Hotel San Jose, 20 min walk / 5 min Uber. Last day of music!", address: "1316 S Congress Ave, Austin, TX 78704" },
           { text: "Barton Springs Pool", note: "Uber 10 min. 68°F year-round. Bring towels.", address: "2201 Barton Springs Rd, Austin, TX 78746" },
-          { text: "South Congress walk", note: "Shops, vintage stores, Allen's Boots.", address: "South Congress Ave, Austin, TX 78704" },
+          { text: "South Congress walk", note: "Shops, vintage stores, Allen's Boots, food trucks.", address: "South Congress Ave, Austin, TX 78704" },
+          { text: "Lady Bird Lake trail", note: "2 min from Fairmont. Shady stretches.", address: "" },
+          { text: "Rainey Street preview", note: "10 min. Scout for Sunday dinner at Emmer & Rye.", address: "Rainey St, Austin, TX 78701" },
         ],
         alts: [] },
       { time: "4:00 PM", iso: "2026-03-14T16:00:00-05:00", end: "2026-03-14T17:00:00-05:00",
         name: "OpenAI & Spurs: Human-Centered AI",
-        detail: "OpenAI + San Antonio Spurs. Optional -- skip for more Austin time.",
+        detail: "OpenAI + San Antonio Spurs. Fun, accessible. Optional -- skip for more Austin time if preferred. Head back to hotel to freshen up before comedy + dinner.",
         venue: "JW Marriott (Salon D)", walk: "5 min from Fairmont",
         address: "110 E 2nd St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1149842", cat: "session",
@@ -200,19 +204,19 @@ const DAYS = [
         ] },
       { time: "5:00 PM", iso: "2026-03-14T17:00:00-05:00", end: "2026-03-14T18:00:00-05:00",
         name: "Pre-show Drink on 6th St",
-        detail: "Walk to Esther's Follies area. Grab a drink.",
+        detail: "Walk to Esther's Follies area. Grab a drink at a 6th St bar before the comedy show.",
         venue: "6th Street area", walk: "5 min from Fairmont",
         address: "6th Street, Austin, TX 78701",
         cat: "free", url: "", alts: [] },
       { time: "6:00 PM", iso: "2026-03-14T18:00:00-05:00", end: "2026-03-14T19:15:00-05:00",
         name: "The Stand Comedy Club: 10 for 10 Podcast Live",
-        detail: "Live comedy podcast showcase. Included with badge.",
+        detail: "Live comedy podcast showcase. Included with badge. Fits before Kemuri dinner -- show ends ~7:15, Uber to East Austin ~10 min, arrive Kemuri ~7:25. They'll hold the table. Shows we're missing due to dinner: Don't Tell Comedy All Stars (7pm, Creek & Cave) and Funny Or Die Approved (8pm, Esther's). Kemuri is worth it.",
         venue: "Esther's Follies (525 E 6th St)", walk: "5 min from Fairmont",
         address: "525 E 6th St, Austin, TX 78701",
         cat: "comedy", url: "", alts: [] },
       { time: "7:15 PM", iso: "2026-03-14T19:15:00-05:00", end: "2026-03-14T21:00:00-05:00",
         name: "Dinner: Kemuri Tatsu-ya",
-        detail: "Texas BBQ x Japanese izakaya. Michelin-recognized. (512) 803-2224",
+        detail: "Texas BBQ x Japanese izakaya. Michelin-recognized. Uber from Esther's ~10 min. After dinner: explore East Austin (East 6th has great bars nearby) or Uber back to Fairmont rooftop (Rules & Regs) for a nightcap. (512) 803-2224",
         venue: "2713 E 2nd St (East Austin)", walk: "Uber from Esther's ~10 min",
         address: "2713 E 2nd St, Austin, TX 78702",
         phone: "(512) 803-2224", website: "https://www.kemuri-tatsuya.com/",
@@ -227,11 +231,11 @@ const DAYS = [
     events: [
       { time: "9:00 AM", iso: "2026-03-15T09:00:00-05:00", end: "2026-03-15T10:00:00-05:00",
         name: "Breakfast",
-        detail: "Bouldin Creek Cafe or Good Things (Fairmont lobby).",
+        detail: "Bouldin Creek Cafe (S 1st St, great brunch, Uber or 20 min walk) or Good Things (Fairmont lobby). Optional easy 3 mi run on the trail before breakfast.",
         venue: "", walk: "", cat: "free", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-15T10:00:00-05:00", end: "2026-03-15T11:00:00-05:00",
         name: "Beyond AI: The New American Dream",
-        detail: "Skilled trades as new upward mobility in the AI age.",
+        detail: "Skilled trades as new upward mobility in the AI age. Interesting contrarian take. Easy walk.",
         venue: "The LINE (111 E Cesar Chavez)", walk: "5 min from Fairmont",
         address: "111 E Cesar Chavez St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1162896", cat: "session",
@@ -241,7 +245,7 @@ const DAYS = [
         ] },
       { time: "11:30 AM", iso: "2026-03-15T11:30:00-05:00", end: "2026-03-15T12:30:00-05:00",
         name: "Pivot Live -- Kara Swisher + Scott Galloway",
-        detail: "RESERVED. Arrive early -- this will be packed.",
+        detail: "RESERVED. Arrive early -- this will be packed. Sharp, funny, entertaining for both of us. Only alt is Brains & Bots: Evolving Intelligence Together (JW Marriott -- neuroscience + AI, more technical, less entertaining).",
         venue: "Hilton (Salon C)", walk: "5 min from The LINE",
         address: "500 E 4th St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1162997", cat: "session", alts: [] },
@@ -250,9 +254,10 @@ const DAYS = [
         detail: "",
         venue: "", walk: "", cat: "free", url: "",
         options: [
-          { text: "La Barbecue", note: "Michelin-starred brisket. Can have a line.", address: "2401 E Cesar Chavez St, Austin, TX 78702" },
-          { text: "Cuantos Tacos", note: "Michelin-recognized food truck.", address: "" },
-          { text: "Flatstock", note: "Last day! Austin Marriott, 7 min.", address: "304 E Cesar Chavez St, Austin, TX 78701" },
+          { text: "La Barbecue", note: "Michelin-starred brisket. Can have a line. 15 min walk east / 5 min Uber.", address: "2401 E Cesar Chavez St, Austin, TX 78702" },
+          { text: "Cuantos Tacos", note: "Michelin-recognized food truck. Quick and delicious.", address: "" },
+          { text: "Flatstock", note: "Last day! Austin Marriott, 7 min from Hilton. Browse + grab food nearby.", address: "304 E Cesar Chavez St, Austin, TX 78701" },
+          { text: "Fairmont / 2nd St District", note: "Easy recharge near hotel.", address: "" },
         ],
         alts: [] },
       { time: "2:30 PM", iso: "2026-03-15T14:30:00-05:00", end: "2026-03-15T15:30:00-05:00",
@@ -266,7 +271,7 @@ const DAYS = [
         ] },
       { time: "4:00 PM", iso: "2026-03-15T16:00:00-05:00", end: "2026-03-15T17:00:00-05:00",
         name: "Reclaiming our Humanity in the Age of AI",
-        detail: "RESERVED. Timnit Gebru + John Palfrey + Karen Hao. Unmissable.",
+        detail: "RESERVED. Timnit Gebru + John Palfrey (MacArthur) + Karen Hao. Heavyweight panel. Unmissable.",
         venue: "JW Marriott (Salon 6-8)", walk: "0 min -- same building",
         address: "110 E 2nd St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1148490", cat: "session",
@@ -275,19 +280,19 @@ const DAYS = [
         ] },
       { time: "5:00 PM", iso: "2026-03-15T17:00:00-05:00", end: "2026-03-15T18:15:00-05:00",
         name: "Congress Ave Bridge at Sunset",
-        detail: "Bats return mid-March. Sunset ~7:40 PM. Great photo spot.",
+        detail: "Walk south on Congress from JW Marriott (10 min). Bats return mid-March. Sunset ~7:40 PM. Worth a look even if no bats. Great photo spot.",
         venue: "Congress Avenue Bridge", walk: "10 min south from JW Marriott",
         address: "Congress Avenue Bridge, Austin, TX 78701",
         cat: "free", url: "", alts: [] },
       { time: "6:15 PM", iso: "2026-03-15T18:15:00-05:00", end: "2026-03-15T19:15:00-05:00",
         name: "Drinks: Rules & Regs",
-        detail: "Fairmont 7th floor rooftop. Pool deck, skyline views.",
+        detail: "Fairmont 7th floor rooftop. Pool deck, skyline views. Walk back north from bridge (10 min). Perfect pre-dinner spot.",
         venue: "Fairmont Austin", walk: "10 min north from bridge",
         address: "101 Red River St, Austin, TX 78701",
         cat: "free", url: "", alts: [] },
       { time: "7:15 PM", iso: "2026-03-15T19:15:00-05:00", end: "2026-03-15T21:15:00-05:00",
         name: "Dinner: Emmer & Rye",
-        detail: "Seasonal small plates on Rainey Street.",
+        detail: "Seasonal small plates on Rainey Street. 10 min walk south from Fairmont. After dinner: explore Rainey St bars -- houses-turned-bars right on the block. Last night in Austin!",
         venue: "51 Rainey St #110", walk: "10 min south from Fairmont",
         address: "51 Rainey St, Austin, TX 78701",
         website: "https://emmerandrye.com/",
@@ -302,11 +307,11 @@ const DAYS = [
     events: [
       { time: "8:00 AM", iso: "2026-03-16T08:00:00-05:00", end: "2026-03-16T09:00:00-05:00",
         name: "Pack & check bags with Fairmont",
-        detail: "Check out is 11am. Leave bags at front desk.",
+        detail: "Check out is 11am. Leave bags at front desk -- they'll store them. Grab coffee at Good Things (lobby).",
         venue: "Fairmont", walk: "", cat: "logistics", url: "", alts: [] },
       { time: "10:00 AM", iso: "2026-03-16T10:00:00-05:00", end: "2026-03-16T11:00:00-05:00",
         name: "Launch, Land, Orbit: Future of Space with Firefly",
-        detail: "RESERVED. Firefly CEO Jason Kim + VP Eng Brigette Oakes.",
+        detail: "RESERVED. Firefly CEO Jason Kim + VP Eng Brigette Oakes. First commercial lunar landing. Moonshot sendoff. Christina can join or enjoy a last coffee at the hotel.",
         venue: "JW Marriott (Salon 1-4)", walk: "5 min from Fairmont",
         address: "110 E 2nd St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1149496", cat: "session",
@@ -315,13 +320,13 @@ const DAYS = [
         ] },
       { time: "11:30 AM", iso: "2026-03-16T11:30:00-05:00", end: "2026-03-16T12:30:00-05:00",
         name: "How to Design a Company That AI Can't Outpace",
-        detail: "RESERVED. Ian Beacraft on AI-native org design. Only if we delay departure.",
+        detail: "RESERVED. Ian Beacraft on AI-native org design. Only if we delay departure to ~12:45. Otherwise, grab bags and hit the road after Firefly.",
         venue: "Hilton (Salon HJK)", walk: "5 min from JW Marriott",
         address: "500 E 4th St, Austin, TX 78701",
         url: "https://schedule.sxsw.com/2026/events/PP1148488", cat: "session", alts: [] },
       { time: "1:00 PM", iso: "2026-03-16T13:00:00-05:00", end: "2026-03-16T15:30:00-05:00",
         name: "Depart for Houston",
-        detail: "I-10 East, ~165 mi, ~2.5 hrs. Arrive ~3:30 PM.",
+        detail: "I-10 East, ~165 mi, ~2.5 hrs. Arrive ~3:30 PM. Gas up before leaving Austin. Use Mopac/183 to avoid I-35 construction. Buc-ee's in Luling (~50 min east) for a pit stop. Earlier departure option: skip Ian Beacraft 11:30 session, grab bags, on the road by noon.",
         venue: "", walk: "", cat: "logistics", url: "", alts: [] },
     ],
   },
@@ -357,7 +362,7 @@ const WALK_TIMES = {
   sanjose:   { fairmont: 20, hilton: 22, jw: 22, marriott: 18, line: 20, westin: 25, courtyard: 28, sanjose: 0, esthers: 25, kemuri: 30, emmer: 25, brazos: 22, rivian: 10 },
   esthers:   { fairmont: 5, hilton: 3, jw: 7, marriott: 10, line: 8, westin: 5, courtyard: 7, sanjose: 25, esthers: 0, kemuri: 28, emmer: 13, brazos: 2, rivian: 18 },
   kemuri:    { fairmont: 25, hilton: 27, jw: 25, marriott: 22, line: 25, westin: 30, courtyard: 32, sanjose: 30, esthers: 28, kemuri: 0, emmer: 20, brazos: 27, rivian: 20 },
-  emmer:     { fairmont: 10, hilton: 12, jw: 8, marriott: 7, line: 8, westin: 15, courtyard: 18, sanjose: 25, esthers: 13, emmer: 0, brazos: 12, rivian: 8 },
+  emmer:     { fairmont: 10, hilton: 12, jw: 8, marriott: 7, line: 8, westin: 15, courtyard: 18, sanjose: 25, esthers: 13, kemuri: 20, emmer: 0, brazos: 12, rivian: 8 },
   brazos:    { fairmont: 5, hilton: 3, jw: 5, marriott: 8, line: 6, westin: 5, courtyard: 7, sanjose: 22, esthers: 2, kemuri: 27, emmer: 12, brazos: 0, rivian: 17 },
   rivian:    { fairmont: 15, hilton: 17, jw: 15, marriott: 12, line: 14, westin: 20, courtyard: 22, sanjose: 10, esthers: 18, kemuri: 20, emmer: 8, brazos: 17, rivian: 0 },
 };
@@ -568,7 +573,16 @@ function clearSwap(dayIdx, eventIdx) {
 
 function getSwap(dayIdx, eventIdx) {
   const swaps = loadSwaps();
-  return swaps[dayIdx + "-" + eventIdx] || null;
+  const swap = swaps[dayIdx + "-" + eventIdx];
+  if (!swap) return null;
+  // Validate altIdx still exists in current data
+  const ev = DAYS[dayIdx] && DAYS[dayIdx].events[eventIdx];
+  if (!ev || swap.altIdx >= ev.alts.length) {
+    delete swaps[dayIdx + "-" + eventIdx];
+    localStorage.setItem(SWAP_KEY, JSON.stringify(swaps));
+    return null;
+  }
+  return swap;
 }
 
 // ─── Utility ───────────────────────────────────────────────────────────────
@@ -1340,6 +1354,7 @@ async function fetchWeather() {
     );
     const data = await res.json();
     const cur = data.current;
+    if (!cur || cur.temperature_2m == null) throw new Error("No weather data");
     const wDesc = weatherDesc(cur.weather_code);
     const hi = data.daily ? Math.round(data.daily.temperature_2m_max[0]) : "";
     const lo = data.daily ? Math.round(data.daily.temperature_2m_min[0]) : "";
@@ -1406,6 +1421,7 @@ const CAT_COLORS = {
 
 function initMap(dayIdx) {
   if (dayIdx < 0) dayIdx = 0;
+  if (typeof L === "undefined") return; // Guard: Leaflet CDN not loaded
 
   // Update map day tabs
   document.querySelectorAll(".map-day-tab").forEach((t, i) => {
