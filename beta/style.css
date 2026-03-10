@@ -747,18 +747,219 @@ html.dark .alt-card.alt-original {
 
 .option-item:last-child { border-bottom: none; }
 
+/* ─── Reference View ─────────────────────────────────────────────────────── */
+
+.ref-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0 12px;
+  margin-bottom: 4px;
+}
+
+.ref-pill {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ref-pill:active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.ref-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  padding: 20px 0 6px;
+}
+
+.ref-section {
+  background: var(--surface);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.ref-title {
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.ref-title::-webkit-details-marker { display: none; }
+
+.ref-title::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 300;
+}
+
+.ref-section[open] > .ref-title::after {
+  content: "-";
+}
+
+.ref-body {
+  padding: 0 16px 16px;
+}
+
+.ref-item {
+  font-size: 14px;
+  padding: 3px 0;
+  color: var(--text-secondary);
+}
+
+.ref-restaurant {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ref-restaurant:last-child { border-bottom: none; }
+
+.venue-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.venue-table th {
+  text-align: left;
+  padding: 8px 0;
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.venue-table td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.venue-table td:first-child { padding-right: 12px; }
+
+.venue-table td:last-child {
+  text-align: right;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  padding-left: 12px;
+}
+
+.ref-body ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ref-body ul li {
+  padding: 4px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.ref-body ul li::before {
+  content: "- ";
+  color: var(--text-tertiary);
+}
+
+.ref-subhead {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-top: 18px;
+  margin-bottom: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.ref-subhead:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.ref-cuisine {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.ref-small {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
 .ref-link {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
+  padding: 4px 2px;
+  margin: -4px -2px;
 }
 
 .ref-link:active { opacity: 0.7; }
 
+.ref-pick {
+  display: inline-block;
+  background: #16A34A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.ref-skip {
+  display: inline-block;
+  background: #6B7280;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.ref-nested { margin-top: 8px; }
+
+.ref-nested-summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
 /* ─── Scrollbar & Motion ─────────────────────────────────────────────────── */
 
-.day-tabs { scrollbar-width: none; }
-.day-tabs::-webkit-scrollbar { display: none; }
+.day-tabs, .ref-nav { scrollbar-width: none; }
+.day-tabs::-webkit-scrollbar, .ref-nav::-webkit-scrollbar { display: none; }
 
 /* ─── Walk Card (Now View) ───────────────────────────────────────────────── */
 

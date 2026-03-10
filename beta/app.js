@@ -1614,6 +1614,18 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDay(dayIdx);
   });
 
+  // Reference nav pills
+  document.getElementById("ref-content").addEventListener("click", e => {
+    const pill = e.target.closest(".ref-pill");
+    if (!pill) return;
+    e.preventDefault();
+    const target = document.getElementById(pill.dataset.target);
+    if (target) {
+      target.open = true;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+
   window.addEventListener("hashchange", route);
   route();
 });
