@@ -1461,6 +1461,7 @@ function renderMapDay(dayIdx) {
   const bounds = [];
   const routePoints = [];
   let eventNum = 0;
+  const venueCount = {}; // track how many markers at each venue for offset
 
   day.events.forEach((ev, evIdx) => {
     const venueKey = venueKeyFromEvent(ev);
@@ -1487,6 +1488,16 @@ function renderMapDay(dayIdx) {
         displayVenue = alt.venueName || VENUE_KEY[alt.venueKey] || "";
       }
     }
+
+    // Offset overlapping markers at the same venue
+    const coordKey = markerCoords[0] + "," + markerCoords[1];
+    venueCount[coordKey] = (venueCount[coordKey] || 0);
+    const n = venueCount[coordKey];
+    if (n > 0) {
+      const angle = (n * 60) * Math.PI / 180;
+      markerCoords = [markerCoords[0] + 0.00025 * Math.cos(angle), markerCoords[1] + 0.00025 * Math.sin(angle)];
+    }
+    venueCount[coordKey]++;
 
     // Numbered circle marker
     const markerIcon = L.divIcon({
