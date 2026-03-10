@@ -115,6 +115,21 @@ a { color: var(--accent); text-decoration: none; }
   transform: scale(0.92);
 }
 
+.app-header::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(to bottom, rgba(26, 26, 46, 0.12), transparent);
+  pointer-events: none;
+}
+
+html.dark .app-header::after {
+  display: none;
+}
+
 /* ─── Views ──────────────────────────────────────────────────────────────── */
 
 .view {
@@ -303,6 +318,13 @@ html.dark #tab-bar a svg { stroke-width: 2.2; }
 .event-card.cat-free .card-label { color: #0EA5E9; }
 .event-card.cat-logistics .card-label { color: var(--logistics); }
 
+html.dark .event-card.cat-session .card-label { color: #60a5fa; }
+html.dark .event-card.cat-dining .card-label { color: #fb923c; }
+html.dark .event-card.cat-comedy .card-label { color: #c084fc; }
+html.dark .event-card.cat-run .card-label { color: #4ade80; }
+html.dark .event-card.cat-free .card-label { color: #38bdf8; }
+html.dark .event-card.cat-logistics .card-label { color: #9ca3af; }
+
 .card-reserved {
   display: inline-block;
   font-size: 11px;
@@ -434,6 +456,7 @@ html.dark .day-tab.today:not(.active) {
 .sched-card.cat-free { border-left-color: var(--free); }
 .sched-card.cat-logistics { border-left-color: var(--logistics); }
 
+.sched-card:last-child { margin-bottom: 24px; }
 .sched-card.past-event { opacity: 0.55; }
 .sched-card.current-event { box-shadow: 0 0 0 2px var(--accent), var(--shadow); }
 
@@ -481,9 +504,10 @@ html.dark .day-tab.today:not(.active) {
 
 .sc-time {
   display: block;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--text-secondary);
+  letter-spacing: 0.2px;
 }
 
 .sc-reserved {
@@ -523,9 +547,9 @@ html.dark .sc-reserved { background: rgba(22, 163, 74, 0.15); }
 
 .sc-venue {
   display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-tertiary);
 }
 
 .sc-walk {
@@ -572,27 +596,33 @@ html.dark .sc-cat-badge.cat-logistics { background: rgba(107, 114, 128, 0.2); co
 /* ─── Alternatives Section (NEW) ─────────────────────────────────────────── */
 
 .alts-section {
-  margin-top: 16px;
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
+  margin-top: 20px;
+  border-top: 2px solid var(--border);
+  padding-top: 16px;
 }
 
 .alts-header {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
 }
 
 .alt-card {
-  background: var(--bg);
+  background: #ededf0;
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 8px;
-  border: 1px solid var(--border);
+  border: 1px solid #dcdce0;
+  box-shadow: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+html.dark .alt-card {
+  background: #1e1e32;
+  border-color: #363658;
 }
 
 .alt-card.alt-active {
@@ -626,8 +656,8 @@ html.dark .alt-card.alt-active {
 
 .alt-name {
   font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
+  font-weight: 500;
+  color: var(--text-secondary);
   flex: 1;
   line-height: 1.3;
 }
