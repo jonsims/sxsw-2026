@@ -738,25 +738,9 @@ function renderReference() {
   const container = document.getElementById("ref-content");
   let html = '';
 
-  html += '<div class="ref-nav">';
-  const pills = [
-    { id: "ref-dinners", label: "Dinner" },
-    { id: "ref-hotel", label: "Hotel" },
-    { id: "ref-venues", label: "Venues" },
-    { id: "ref-food", label: "Food" },
-    { id: "ref-tips", label: "Tips" },
-    { id: "ref-sanjose", label: "San Jose" },
-    { id: "ref-comedy", label: "Comedy" },
-    { id: "ref-spots", label: "Spots" },
-  ];
-  pills.forEach(p => {
-    html += '<a href="#" class="ref-pill" data-target="' + p.id + '">' + p.label + '</a>';
-  });
-  html += '</div>';
-
   html += '<div class="ref-group-label">Quick Reference</div>';
 
-  html += '<details class="ref-section" id="ref-dinners" open>';
+  html += '<details class="ref-section" id="ref-dinners">';
   html += '<summary class="ref-title">Dinner Reservations</summary>';
   html += '<div class="ref-body">';
   REFERENCE.restaurants.forEach(r => {
