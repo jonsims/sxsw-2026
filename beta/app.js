@@ -930,7 +930,8 @@ function route() {
   if (hash === "#now") updateNowView();
   if (hash === "#schedule" && !document.querySelector(".day-content")) renderDay(getToday());
   if (hash === "#map") initMap(getToday());
-  if (hash === "#ref" && !document.getElementById("ref-content").hasChildNodes()) renderReference();
+  const refEl = document.getElementById("ref-content");
+  if (hash === "#ref" && refEl && !refEl.hasChildNodes()) renderReference();
 }
 
 // ─── Now View ──────────────────────────────────────────────────────────────
@@ -1157,8 +1158,8 @@ function getToday() {
 
 function feasibilityDot(level) {
   const colors = { green: "#16A34A", amber: "#d97706", red: "#dc2626" };
-  const labels = { green: "Easy swap", amber: "Tight timing", red: "Risky" };
-  return '<span class="feas-dot" style="background:' + colors[level] + '" title="' + labels[level] + '"></span>';
+  const labels = { green: "Easy", amber: "Tight", red: "Risky" };
+  return '<span class="feas-dot" style="background:' + colors[level] + '">' + labels[level] + '</span>';
 }
 
 function renderAltCard(alt, feas, dayIdx, evIdx, altIdx) {
@@ -1596,12 +1597,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Swap button delegation
-  document.getElementById("day-timeline").addEventListener("click", e => {
+  const timeline = document.getElementById("day-timeline");
+  if (timeline) timeline.addEventListener("click", e => {
     const btn = e.target.closest(".swap-btn");
     if (!btn) return;
     e.stopPropagation();
 
     const card = btn.closest(".alt-card");
+    if (!card) return;
     const dayIdx = parseInt(card.dataset.day);
     const evIdx = parseInt(card.dataset.ev);
     const altIdx = parseInt(card.dataset.alt);
@@ -1615,7 +1618,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Reference nav pills
-  document.getElementById("ref-content").addEventListener("click", e => {
+  const refContent = document.getElementById("ref-content");
+  if (refContent) refContent.addEventListener("click", e => {
     const pill = e.target.closest(".ref-pill");
     if (!pill) return;
     e.preventDefault();

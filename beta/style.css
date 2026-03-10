@@ -29,8 +29,8 @@ html.dark {
   --surface: #25253e;
   --text: #e8e8f0;
   --text-secondary: #a0a0b8;
-  --text-tertiary: #9090a8;
-  --border: #35355a;
+  --text-tertiary: #a8a8c0;
+  --border: #40406a;
   --shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -611,10 +611,14 @@ html.dark .alt-card.alt-active {
 
 .feas-dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 8px;
   flex-shrink: 0;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 }
 
 .alt-name {
@@ -1052,8 +1056,9 @@ html.dark .alt-card.alt-original {
 /* ─── Map View ───────────────────────────────────────────────────────────── */
 
 #map-container {
-  height: calc(100vh - 250px);
-  min-height: 300px;
+  height: 42vh;
+  min-height: 220px;
+  max-height: 400px;
   border-radius: var(--radius);
   margin: 0 0 8px;
   z-index: 0;
@@ -1098,6 +1103,8 @@ html.dark .alt-card.alt-original {
   padding: 12px 16px;
   box-shadow: var(--shadow);
   margin-bottom: 80px;
+  max-height: 40vh;
+  overflow-y: auto;
 }
 
 .map-legend-title {
@@ -1161,6 +1168,31 @@ html.dark .leaflet-popup-content-wrapper {
 
 html.dark .leaflet-popup-tip {
   background: var(--surface) !important;
+}
+
+/* Landscape / tablet: side-by-side map + legend */
+@media (min-width: 700px) {
+  #map-view .view-content,
+  #map-view {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  #map-view {
+    display: flex;
+    flex-direction: column;
+  }
+  .map-day-tabs + #map-container {
+    display: contents;
+  }
+  @supports (display: grid) {
+    #map-container {
+      height: calc(100vh - 220px);
+      max-height: none;
+    }
+    #map-legend {
+      max-height: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
