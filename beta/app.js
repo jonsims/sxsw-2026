@@ -1444,8 +1444,9 @@ function setMapTiles(isDark) {
       maxZoom: 19,
     }).addTo(mapInstance);
   } else {
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
+      attribution: '&copy; OpenStreetMap',
     }).addTo(mapInstance);
   }
 }
@@ -1527,9 +1528,10 @@ function renderMapDay(dayIdx) {
   for (let i = 0; i < routePoints.length - 1; i++) {
     const line = L.polyline([routePoints[i], routePoints[i + 1]], {
       color: "#6366f1",
-      weight: 2,
-      opacity: 0.5,
-      dashArray: "6, 8",
+      weight: 3,
+      opacity: 0.45,
+      dashArray: "2, 10",
+      lineCap: "round",
     }).addTo(mapInstance);
     mapLines.push(line);
   }
