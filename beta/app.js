@@ -936,14 +936,6 @@ function route() {
 
 // ─── Now View ──────────────────────────────────────────────────────────────
 
-// TEMP PREVIEW: fake time during conference — REMOVE AFTER TESTING
-const PREVIEW_TIME = new Date("2026-03-12T10:30:00-05:00");
-const _RealDate = Date;
-Date = class extends _RealDate {
-  constructor(...args) { if (args.length === 0) return new _RealDate(PREVIEW_TIME); super(...args); }
-  static now() { return PREVIEW_TIME.getTime(); }
-};
-
 function getAllEvents() {
   const all = [];
   DAYS.forEach((day, di) => {
@@ -1433,8 +1425,9 @@ function initMap(dayIdx) {
     setMapTiles(isDark);
   }
 
-  // Need to invalidate size after view becomes visible
-  setTimeout(() => mapInstance.invalidateSize(), 100);
+  // Need to invalidate size after view becomes visible (flex layout needs extra time)
+  setTimeout(() => mapInstance.invalidateSize(), 150);
+  setTimeout(() => mapInstance.invalidateSize(), 400);
 
   if (activeMapDay !== dayIdx) {
     activeMapDay = dayIdx;
@@ -1452,9 +1445,8 @@ function setMapTiles(isDark) {
       maxZoom: 19,
     }).addTo(mapInstance);
   } else {
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png", {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap',
     }).addTo(mapInstance);
   }
 }
