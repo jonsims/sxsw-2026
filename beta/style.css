@@ -1088,17 +1088,50 @@ html.dark .alt-card.alt-original {
 
 /* ─── Map View ───────────────────────────────────────────────────────────── */
 
+/* Phone: map-view fills viewport, map + legend share the space */
+#map-view.active {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 57px - 60px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.map-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
 #map-container {
-  height: 42vh;
-  min-height: 220px;
-  max-height: 400px;
+  height: 35vh;
+  min-height: 180px;
+  max-height: 300px;
+  flex-shrink: 0;
   border-radius: var(--radius);
-  margin: 0 0 8px;
   z-index: 0;
+}
+
+.map-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  flex-shrink: 0;
+}
+
+.map-divider-pill {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
 }
 
 .map-day-tabs {
   margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
 .map-marker-icon {
@@ -1135,8 +1168,8 @@ html.dark .alt-card.alt-original {
   border-radius: var(--radius);
   padding: 12px 16px;
   box-shadow: var(--shadow);
-  margin-bottom: 80px;
-  max-height: 40vh;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
 }
 
@@ -1206,11 +1239,7 @@ html.dark .leaflet-popup-tip {
 /* Landscape / tablet: taller map when space allows */
 @media (min-width: 700px) {
   #map-container {
-    height: calc(100vh - 260px);
-    max-height: 600px;
-  }
-  #map-legend {
-    max-height: 50vh;
+    max-height: 350px;
   }
 }
 
@@ -1231,13 +1260,19 @@ html.dark .leaflet-popup-tip {
   }
   .alts-header { grid-column: 1 / -1; }
   .alt-card.alt-original { grid-column: 1 / -1; }
+
+  /* Map: side-by-side on tablet+ */
+  #map-view.active { max-width: 960px; }
+  .map-body { flex-direction: row; gap: 12px; }
+  #map-container { flex: 3; height: auto; min-height: 300px; max-height: none; }
+  #map-legend { flex: 2; }
+  .map-divider { display: none; }
 }
 
 /* ─── iPad landscape / Desktop (1024px+) ─────────────────── */
 @media (min-width: 1024px) {
   .view { max-width: 840px; }
-  #map-container { height: 60vh; max-height: 700px; }
-  #map-legend { max-height: 60vh; }
+  #map-view.active { max-width: 1100px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
