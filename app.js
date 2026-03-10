@@ -603,6 +603,7 @@ const REFERENCE = {
   hotel: {
     name: "Fairmont Austin",
     address: "101 Red River St, Austin, TX 78701",
+    phone: "(512) 600-2000",
     checkIn: "March 11, 3:00 PM",
     checkOut: "March 16, 11:00 AM",
     rooftop: "Rules & Regs -- 7th floor, pool deck + skyline views",
@@ -720,15 +721,13 @@ const REFERENCE = {
     { name: "SXSW GO App", url: "https://sxsw.com/mobile/" },
   ],
   tips: [
-    "SXSW GO app for real-time schedule updates",
     "Arrive 15 min early for reserved sessions -- they release unclaimed seats",
-    "Badge on at all times",
-    "Comfortable shoes -- 15,000+ steps/day",
-    "Portable charger",
+    "Badge on at all times inside SXSW venues",
     "Sunscreen -- 83-85\u00B0F and lots of outdoor walking between venues",
-    "Stay hydrated -- Austin in March is deceptively dry. Carry a water bottle.",
-    "Pollen alert -- cedar and oak are brutal in March. Pack allergy meds if sensitive.",
+    "Stay hydrated -- Austin in March is deceptively dry",
+    "Pollen alert -- cedar and oak are brutal in March",
     "Almost everything is walkable from the Fairmont (5-7 min to most venues)",
+    "Uber/Lyft surge pricing is rough during SXSW -- walk when possible",
   ],
 };
 
@@ -738,8 +737,62 @@ function renderReference() {
   const container = document.getElementById("ref-content");
   let html = '';
 
-  html += '<div class="ref-group-label">Quick Reference</div>';
+  // ── Essentials ──
+  html += '<div class="ref-group-label">Essentials</div>';
 
+  // Hotel
+  html += '<details class="ref-section" id="ref-hotel">';
+  html += '<summary class="ref-title">Fairmont Austin</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.hotel.address + '</div>';
+  html += '<div class="ref-item">Check-in: ' + REFERENCE.hotel.checkIn + '</div>';
+  html += '<div class="ref-item">Check-out: ' + REFERENCE.hotel.checkOut + '</div>';
+  html += '<div class="ref-item">Rooftop: ' + REFERENCE.hotel.rooftop + '</div>';
+  html += '<div class="ref-item">Lobby: ' + REFERENCE.hotel.lobby + '</div>';
+  html += '<div class="card-btns" style="margin-top:8px">';
+  html += '<a href="' + mapUrl(REFERENCE.hotel.address) + '" class="card-btn">Directions</a>';
+  html += '<a href="tel:' + REFERENCE.hotel.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call Front Desk</a>';
+  html += '</div>';
+  html += '</div></details>';
+
+  // Venue Distances
+  html += '<details class="ref-section" id="ref-venues">';
+  html += '<summary class="ref-title">Venue Distances</summary>';
+  html += '<div class="ref-body"><table class="venue-table"><thead><tr><th>Venue</th><th>Walk</th></tr></thead><tbody>';
+  REFERENCE.venues.forEach(v => {
+    html += '<tr><td><a href="' + mapUrl(v.address + ", Austin, TX") + '">' + v.name + '</a></td><td>' + v.walk + '</td></tr>';
+  });
+  html += '</tbody></table></div></details>';
+
+  // Badge
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Badge</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item"><strong>' + REFERENCE.badge.name + '</strong> -- ' + REFERENCE.badge.covers + '</div>';
+  html += '<div class="ref-item">Does NOT cover: ' + REFERENCE.badge.doesNot + '</div>';
+  html += '<div class="ref-item ref-small">' + REFERENCE.badge.wristbandVerdict + '</div>';
+  html += '</div></details>';
+
+  // Tips
+  html += '<details class="ref-section" id="ref-tips">';
+  html += '<summary class="ref-title">Tips</summary>';
+  html += '<div class="ref-body"><ul>';
+  REFERENCE.tips.forEach(t => { html += '<li>' + t + '</li>'; });
+  html += '</ul></div></details>';
+
+  // Key Links
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Key Links</summary>';
+  html += '<div class="ref-body">';
+  REFERENCE.keyLinks.forEach(l => {
+    html += '<div class="ref-item"><a href="' + l.url + '" target="_blank" class="ref-link">' + l.name + '</a></div>';
+  });
+  html += '</div></details>';
+
+  // ── Food & Drink ──
+  html += '<div class="ref-group-label">Food & Drink</div>';
+
+  // Dinner Reservations
   html += '<details class="ref-section" id="ref-dinners">';
   html += '<summary class="ref-title">Dinner Reservations</summary>';
   html += '<div class="ref-body">';
@@ -750,35 +803,16 @@ function renderReference() {
     html += '<div>' + r.address + '</div>';
     const btns = [];
     btns.push('<a href="' + mapUrl(r.address) + '" class="card-btn">Directions</a>');
-    if (r.phone) btns.push('<a href="tel:' + r.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">' + r.phone + '</a>');
+    if (r.phone) btns.push('<a href="tel:' + r.phone.replace(/[^+\d]/g, "") + '" class="card-btn card-btn-alt">Call</a>');
     if (r.website) btns.push('<a href="' + r.website + '" class="card-btn card-btn-alt">Website</a>');
     html += '<div class="card-btns">' + btns.join("") + '</div>';
     html += '</div>';
   });
   html += '</div></details>';
 
-  html += '<details class="ref-section" id="ref-hotel">';
-  html += '<summary class="ref-title">Hotel</summary>';
-  html += '<div class="ref-body">';
-  html += '<div class="ref-item"><strong>' + REFERENCE.hotel.name + '</strong></div>';
-  html += '<div class="ref-item">' + REFERENCE.hotel.address + '</div>';
-  html += '<div class="ref-item">Check-in: ' + REFERENCE.hotel.checkIn + '</div>';
-  html += '<div class="ref-item">Check-out: ' + REFERENCE.hotel.checkOut + '</div>';
-  html += '<div class="ref-item">Rooftop: ' + REFERENCE.hotel.rooftop + '</div>';
-  html += '<div class="ref-item">Lobby: ' + REFERENCE.hotel.lobby + '</div>';
-  html += '<a href="' + mapUrl(REFERENCE.hotel.address) + '" class="card-btn" style="margin-top:8px;display:inline-block">Directions to Fairmont</a>';
-  html += '</div></details>';
-
-  html += '<details class="ref-section" id="ref-venues">';
-  html += '<summary class="ref-title">Venue Distances (from Fairmont)</summary>';
-  html += '<div class="ref-body"><table class="venue-table"><thead><tr><th>Venue</th><th>Walk</th></tr></thead><tbody>';
-  REFERENCE.venues.forEach(v => {
-    html += '<tr><td><a href="' + mapUrl(v.address + ", Austin, TX") + '">' + v.name + '</a></td><td>' + v.walk + '</td></tr>';
-  });
-  html += '</tbody></table></div></details>';
-
+  // Coffee, Breakfast & Lunch
   html += '<details class="ref-section" id="ref-food">';
-  html += '<summary class="ref-title">Coffee, Breakfast & Lunch</summary>';
+  html += '<summary class="ref-title">Eat</summary>';
   html += '<div class="ref-body">';
   html += '<div class="ref-subhead">Coffee</div>';
   REFERENCE.foodDrink.coffee.forEach(f => {
@@ -800,42 +834,29 @@ function renderReference() {
   });
   html += '</div></details>';
 
-  html += '<details class="ref-section">';
-  html += '<summary class="ref-title">Badge & Music Wristband</summary>';
-  html += '<div class="ref-body">';
-  html += '<div class="ref-item"><strong>' + REFERENCE.badge.name + '</strong></div>';
-  html += '<div class="ref-item">Covers: ' + REFERENCE.badge.covers + '</div>';
-  html += '<div class="ref-item">Does NOT cover: ' + REFERENCE.badge.doesNot + '</div>';
-  html += '<div class="ref-item"><strong>Music wristband verdict:</strong> ' + REFERENCE.badge.wristbandVerdict + '</div>';
-  html += '</div></details>';
+  // ── Plans ──
+  html += '<div class="ref-group-label">Plans</div>';
 
-  html += '<details class="ref-section" id="ref-tips">';
-  html += '<summary class="ref-title">Tips</summary>';
-  html += '<div class="ref-body"><ul>';
-  REFERENCE.tips.forEach(t => { html += '<li>' + t + '</li>'; });
-  html += '</ul></div></details>';
-
-  html += '<details class="ref-section">';
-  html += '<summary class="ref-title">Key Links</summary>';
+  // Comedy
+  html += '<details class="ref-section" id="ref-comedy">';
+  html += '<summary class="ref-title">' + REFERENCE.comedy.title + '</summary>';
   html += '<div class="ref-body">';
-  REFERENCE.keyLinks.forEach(l => {
-    html += '<div class="ref-item"><a href="' + l.url + '" target="_blank" class="ref-link">' + l.name + '</a></div>';
+  html += '<div class="ref-item">' + REFERENCE.comedy.note + '</div>';
+  REFERENCE.comedy.shows.forEach(s => {
+    const statusClass = s.status === "Our pick" ? "ref-pick" : "ref-skip";
+    html += '<div class="ref-item"><strong>' + s.time + '</strong> -- ' + s.name;
+    html += ' <span class="' + statusClass + '">' + s.status + '</span>';
+    html += '<br>' + s.venue + ' (' + s.walk + '). ' + s.note;
+    if (s.venue.includes("(")) {
+      const addr = s.venue.match(/\(([^)]+)\)/);
+      if (addr) html += ' <a href="' + mapUrl(addr[1] + ", Austin, TX") + '" class="ref-link">Directions</a>';
+    }
+    html += '</div>';
   });
+  html += '<div class="ref-item ref-small">' + REFERENCE.comedy.alsoInTown + '</div>';
   html += '</div></details>';
 
-  html += '<details class="ref-section">';
-  html += '<summary class="ref-title">Logistics</summary>';
-  html += '<div class="ref-body">';
-  html += '<div class="ref-subhead">Getting Around</div>';
-  html += '<div class="ref-item">' + REFERENCE.logistics.uber + '</div>';
-  html += '<div class="ref-subhead">Daylight Saving Time</div>';
-  html += '<div class="ref-item">' + REFERENCE.logistics.dst + '</div>';
-  html += '<div class="ref-subhead">Houston Drive (Monday)</div>';
-  html += '<div class="ref-item">' + REFERENCE.logistics.houston + '</div>';
-  html += '</div></details>';
-
-  html += '<div class="ref-group-label">Things to Do</div>';
-
+  // San Jose
   html += '<details class="ref-section" id="ref-sanjose">';
   html += '<summary class="ref-title">' + REFERENCE.sanJose.title + '</summary>';
   html += '<div class="ref-body">';
@@ -853,10 +874,11 @@ function renderReference() {
   html += '</ul>';
   html += '<div class="ref-item">' + REFERENCE.sanJose.note + '</div>';
   if (REFERENCE.sanJose.address) {
-    html += '<a href="' + mapUrl(REFERENCE.sanJose.address) + '" class="card-btn" style="margin-top:8px;display:inline-block">Directions</a>';
+    html += '<div class="card-btns" style="margin-top:8px"><a href="' + mapUrl(REFERENCE.sanJose.address) + '" class="card-btn">Directions</a></div>';
   }
   html += '</div></details>';
 
+  // Flatstock
   html += '<details class="ref-section">';
   html += '<summary class="ref-title">' + REFERENCE.flatstock.title + '</summary>';
   html += '<div class="ref-body">';
@@ -867,38 +889,44 @@ function renderReference() {
   REFERENCE.flatstock.bestTimes.forEach(t => { html += '<li>' + t + '</li>'; });
   html += '</ul>';
   if (REFERENCE.flatstock.address) {
-    html += '<a href="' + mapUrl(REFERENCE.flatstock.address) + '" class="card-btn" style="margin-top:8px;display:inline-block">Directions</a>';
+    html += '<div class="card-btns" style="margin-top:8px"><a href="' + mapUrl(REFERENCE.flatstock.address) + '" class="card-btn">Directions</a></div>';
   }
   html += '</div></details>';
 
-  html += '<details class="ref-section" id="ref-comedy">';
-  html += '<summary class="ref-title">' + REFERENCE.comedy.title + '</summary>';
-  html += '<div class="ref-body">';
-  html += '<div class="ref-item">' + REFERENCE.comedy.note + '</div>';
-  REFERENCE.comedy.shows.forEach(s => {
-    const statusClass = s.status === "Our pick" ? "ref-pick" : "ref-skip";
-    html += '<div class="ref-item"><strong>' + s.time + '</strong> -- ' + s.name;
-    html += ' <span class="' + statusClass + '">' + s.status + '</span>';
-    html += '<br>' + s.venue + ' (' + s.walk + '). ' + s.note + '</div>';
-  });
-  html += '<div class="ref-item ref-small">' + REFERENCE.comedy.alsoInTown + '</div>';
-  html += '</div></details>';
+  // ── Explore ──
+  html += '<div class="ref-group-label">Explore</div>';
 
+  // Merged: Austin Spots + Free Events
   html += '<details class="ref-section" id="ref-spots">';
-  html += '<summary class="ref-title">Austin Spots to Hit</summary>';
+  html += '<summary class="ref-title">Explore Austin</summary>';
   html += '<div class="ref-body">';
   REFERENCE.austinSpots.forEach(s => {
     html += '<div class="ref-item"><strong>' + s.name + '</strong> -- ' + s.note;
     if (s.address) html += ' <a href="' + mapUrl(s.address) + '" class="ref-link">Directions</a>';
     html += '</div>';
   });
+  html += '<div class="ref-subhead">Free Events</div>';
+  REFERENCE.freeEvents.forEach(e => {
+    html += '<div class="ref-item">' + e + '</div>';
+  });
+  html += '</div></details>';
+
+  // ── Logistics ──
+  html += '<div class="ref-group-label">Logistics</div>';
+
+  html += '<details class="ref-section">';
+  html += '<summary class="ref-title">Getting Around</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.logistics.uber + '</div>';
+  html += '<div class="ref-subhead">Daylight Saving Time</div>';
+  html += '<div class="ref-item">' + REFERENCE.logistics.dst + '</div>';
   html += '</div></details>';
 
   html += '<details class="ref-section">';
-  html += '<summary class="ref-title">Free Events</summary>';
-  html += '<div class="ref-body"><ul>';
-  REFERENCE.freeEvents.forEach(e => { html += '<li>' + e + '</li>'; });
-  html += '</ul></div></details>';
+  html += '<summary class="ref-title">Monday: Houston Drive</summary>';
+  html += '<div class="ref-body">';
+  html += '<div class="ref-item">' + REFERENCE.logistics.houston + '</div>';
+  html += '</div></details>';
 
   container.innerHTML = html;
 }

@@ -809,18 +809,20 @@ html.dark .alt-card.alt-original {
 }
 
 .ref-group-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-tertiary);
-  padding: 20px 0 6px;
+  padding: 20px 0 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
 }
 
 .ref-section {
   background: var(--surface);
   border-radius: var(--radius);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -840,25 +842,43 @@ html.dark .alt-card.alt-original {
 .ref-title::-webkit-details-marker { display: none; }
 
 .ref-title::after {
-  content: "+";
+  content: "\203A";
   margin-left: auto;
-  font-size: 22px;
+  font-size: 20px;
   color: var(--accent);
-  font-weight: 300;
+  font-weight: 400;
+  transition: transform 0.2s ease;
+  transform: rotate(0deg);
 }
 
 .ref-section[open] > .ref-title::after {
-  content: "-";
+  transform: rotate(90deg);
 }
 
 .ref-body {
   padding: 0 16px 16px;
+  animation: refFadeIn 0.15s ease;
+}
+
+@keyframes refFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.venue-table td a {
+  display: block;
+  padding: 4px 0;
 }
 
 .ref-item {
   font-size: 14px;
-  padding: 3px 0;
+  padding: 6px 0;
   color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.ref-item strong {
+  color: var(--text);
 }
 
 .ref-restaurant {
@@ -902,9 +922,10 @@ html.dark .alt-card.alt-original {
 }
 
 .ref-body ul li {
-  padding: 4px 0;
+  padding: 6px 0;
   font-size: 14px;
   color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .ref-body ul li::before {
@@ -943,11 +964,21 @@ html.dark .alt-card.alt-original {
 }
 
 .ref-link {
+  display: inline-flex;
+  align-items: center;
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
-  padding: 4px 2px;
-  margin: -4px -2px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(37, 99, 235, 0.08);
+  min-height: 36px;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+html.dark .ref-link {
+  background: rgba(96, 165, 250, 0.12);
 }
 
 .ref-link:active { opacity: 0.7; }
@@ -974,6 +1005,10 @@ html.dark .alt-card.alt-original {
   margin-left: 4px;
 }
 
+html.dark .ref-pick {
+  background: #22c55e;
+}
+
 .ref-nested { margin-top: 8px; }
 
 .ref-nested-summary {
@@ -982,6 +1017,9 @@ html.dark .alt-card.alt-original {
   color: var(--accent);
   cursor: pointer;
   padding: 4px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 /* ─── Scrollbar & Motion ─────────────────────────────────────────────────── */
