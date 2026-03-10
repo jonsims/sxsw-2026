@@ -1,4 +1,4 @@
-const CACHE = 'sxsw-beta-v5';
+const CACHE = 'sxsw-beta-v6';
 const ASSETS = ['./', 'index.html', 'style.css', 'app.js', 'manifest.json', '../apple-touch-icon.png', '../icon-192.png', '../icon-512.png', '../marquee.png'];
 
 self.addEventListener('install', e => {
@@ -16,30 +16,14 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-
-  // Network-first for external API calls (weather, etc.)
-  if (url.hostname !== location.hostname) {
-    e.respondWith(
-      fetch(e.request)
-        .then(r => {
-          const clone = r.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
-          return r;
-        })
-        .catch(() => caches.match(e.request))
-    );
-    return;
-  }
-
-  // Stale-while-revalidate for app shell
+  // Network-first for everything — always get latest, fall back to cache offline
   e.respondWith(
-    caches.match(e.request).then(cached => {
-      const fetched = fetch(e.request).then(r => {
-        caches.open(CACHE).then(c => c.put(e.request, r.clone()));
+    fetch(e.request)
+      .then(r => {
+        const clone = r.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
         return r;
-      });
-      return cached || fetched;
-    })
+      })
+      .catch(() => caches.match(e.request))
   );
 });
