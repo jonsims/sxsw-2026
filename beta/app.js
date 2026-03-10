@@ -936,6 +936,14 @@ function route() {
 
 // ─── Now View ──────────────────────────────────────────────────────────────
 
+// TEMP PREVIEW: fake time during conference — REMOVE AFTER TESTING
+const PREVIEW_TIME = new Date("2026-03-12T10:30:00-05:00");
+const _RealDate = Date;
+Date = class extends _RealDate {
+  constructor(...args) { if (args.length === 0) return new _RealDate(PREVIEW_TIME); super(...args); }
+  static now() { return PREVIEW_TIME.getTime(); }
+};
+
 function getAllEvents() {
   const all = [];
   DAYS.forEach((day, di) => {
