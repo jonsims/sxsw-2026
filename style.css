@@ -1122,8 +1122,13 @@ html.dark .alt-card.alt-original {
 }
 
 .map-day-tabs {
-  margin-bottom: 12px;
+  position: static;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 8px 0;
+  margin-bottom: 4px;
   flex-shrink: 0;
+  background: transparent;
 }
 
 .map-marker-icon {
