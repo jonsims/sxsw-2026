@@ -928,8 +928,8 @@ function route() {
   if (tab) { tab.setAttribute("aria-selected", "true"); tab.classList.add("active"); }
 
   if (hash === "#now") updateNowView();
-  if (hash === "#schedule" && !document.querySelector(".day-content")) renderDay(getToday());
-  if (hash === "#map") initMap(getToday());
+  if (hash === "#schedule") renderDay(activeDay >= 0 ? activeDay : getToday());
+  if (hash === "#map") initMap(activeDay >= 0 ? activeDay : getToday());
   const refEl = document.getElementById("ref-content");
   if (hash === "#ref" && refEl && !refEl.hasChildNodes()) renderReference();
 }
