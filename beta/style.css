@@ -126,6 +126,9 @@ a { color: var(--accent); text-decoration: none; }
 
 .view.active { display: block; }
 
+/* Ensure Leaflet elements don't bleed through hidden views */
+.view:not(.active) { display: none !important; }
+
 /* ─── Tab Bar ────────────────────────────────────────────────────────────── */
 
 #tab-bar {
@@ -1170,28 +1173,14 @@ html.dark .leaflet-popup-tip {
   background: var(--surface) !important;
 }
 
-/* Landscape / tablet: side-by-side map + legend */
+/* Landscape / tablet: taller map when space allows */
 @media (min-width: 700px) {
-  #map-view .view-content,
-  #map-view {
-    display: grid;
-    grid-template-rows: auto 1fr;
+  #map-container {
+    height: calc(100vh - 260px);
+    max-height: 600px;
   }
-  #map-view {
-    display: flex;
-    flex-direction: column;
-  }
-  .map-day-tabs + #map-container {
-    display: contents;
-  }
-  @supports (display: grid) {
-    #map-container {
-      height: calc(100vh - 220px);
-      max-height: none;
-    }
-    #map-legend {
-      max-height: none;
-    }
+  #map-legend {
+    max-height: 50vh;
   }
 }
 
